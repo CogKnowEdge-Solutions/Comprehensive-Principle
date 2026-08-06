@@ -287,14 +287,14 @@ Treat reviewer feedback as data. They're not critiquing you; they're showing you
 
 Section 7 (Underlying Concepts) is your chance to explain the *why* and *how* in theory before diving into code. **A well-placed diagram can save 500 words of explanation.**
 
-### Default: Use a Mermaid Diagram
+### Quick Decision: Should You Use a Diagram?
 
-**Plan on including at least one Mermaid diagram in every lab.** A lab that explains any flow, pipeline, architecture, workflow, or relationship in prose should convert that into a diagram. Ask yourself:
+Ask yourself:
 - Can I explain this concept better as a flow, architecture, or relationship than as prose?
 - Would a learner benefit from seeing how pieces connect visually?
 - Is there a pipeline, workflow, or decision tree involved?
 
-If yes to any of these — and that will be most labs — use Mermaid. Only skip it when the concept is trivial enough that a one-sentence explanation suffices.
+If yes to any of these, use Mermaid.
 
 ### Example: Vector Embeddings (Beginner Lab)
 
@@ -468,7 +468,7 @@ STRUCTURE & FILES
 
 CONCEPTS & DIAGRAMS
   [ ] Section 7 (concepts) ≤2 pages
-  [ ] Mermaid diagram(s) used for Section 7 concepts; render and are followed by prose
+  [ ] Mermaid diagrams (if used) render and are followed by prose
 
 TESTING (All 5 Gates)
   [ ] Gate 1: Fresh environment setup passes

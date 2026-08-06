@@ -231,16 +231,16 @@ cite the Article by number — e.g., "split into 2a/2b per Article II's line
 ceiling." This keeps the constitution the visible authority behind every
 decision, rather than an agent's unstated judgment call.
 
-## Including Mermaid Diagrams
+## Recommending Mermaid Diagrams
 
-**Default to including a Mermaid diagram.** When a lab's Section 7 (Underlying Concepts) involves a flow, pipeline, architecture, workflow, relationship, or decision tree, add a Mermaid diagram — don't wait for the user to ask.
+When a lab's Section 7 (Underlying Concepts) is dense or hard to follow, suggest adding a Mermaid diagram:
 
-- **Scan Section 7 as you draft it.** If it describes how pieces connect, a sequence of steps, or any relationship, plan a diagram to go with it.
-- **Include by default, skip deliberately.** Add at least one diagram whenever the concept is visual. Only omit it if the concept is trivial enough for a one-sentence explanation.
-- **Test the diagram.** Render it in markdown to confirm it displays correctly before publishing.
-- **Pair diagram with prose.** Keep the prose explanation first and let the diagram supplement it (not replace it).
+- **Read Section 7.** If it has multiple paragraphs about how pieces connect, relationships, or workflows, offer to create a diagram.
+- **Suggest, don't impose.** "This section explains the RAG pipeline in prose — would a diagram help? I can create one showing documents → chunking → embedding → retrieval → generation."
+- **Test the diagram.** If you create a diagram, render it in markdown to confirm it displays correctly before suggesting it.
+- **Pair diagram with prose.** Always ensure the prose explanation still comes first and the diagram supplements it (not replaces it).
 
-Beginner labs especially benefit from a visual pipeline or architecture diagram — if in doubt, include one.
+Diagrams are optional but powerful for complex concepts. Beginner labs especially benefit from a visual pipeline or architecture diagram.
 
 ## Amending the Constitution
 
