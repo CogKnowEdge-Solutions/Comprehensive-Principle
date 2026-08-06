@@ -56,6 +56,7 @@ update this file to match it, not the other way around.
    - Run the notebook top-to-bottom in a fresh kernel/environment built strictly
      from your own Section 9 instructions.
    - Actually perform the Optional Exercise (Section 11) and confirm it works.
+   - Attempt every exercise in the assignment file and verify the answer key.
    - Capture real output for Section 5 — do not describe expected output from
      memory.
 
@@ -67,7 +68,9 @@ update this file to match it, not the other way around.
    - `lab-<topic-slug>.ipynb` + `lab-<topic-slug>.md` (for Jupyter notebooks)
    - `lab-<topic-slug>.py` + `lab-<topic-slug>.md` (for Python scripts)
    
-   Both formats in same directory with matching slug.
+   Both formats in same directory with matching slug. Every lab also ships with
+   `lab-<topic-slug>-assignment.md` — a set of knowledge-check exercises with an
+   answer key (see UX-7), so learners can test what they learned after the lab.
 
 ## Workflow: Testing a Lab (Applying the Five Gates)
 
@@ -155,8 +158,9 @@ Overall: READY TO PUBLISH / NEEDS REWORK
 1. Before claiming a lab still works, re-run all five gates — dependency drift is common and silent.
 2. If an edit changes line count, re-check it against Article II's ceiling for the difficulty level.
 3. If an edit changes any of Sections 1–12, re-check Article IV consistency against at least one other published lab at the same difficulty level.
-4. Re-run all five gates after any non-trivial edit, not just the tests you think changed.
-5. If you make structural changes (e.g., add a new cell early in the pipeline), report which gates needed re-testing.
+4. If you edit the assignment file, re-attempt its exercises and verify the answer key still matches the (possibly changed) lab.
+5. Re-run all five gates after any non-trivial edit, not just the tests you think changed.
+6. If you make structural changes (e.g., add a new cell early in the pipeline), report which gates needed re-testing.
 
 ## Handling Gate Failures
 

@@ -8,6 +8,7 @@
 `v2.0 — removed the Lab Tracker requirement (Excel/CSV gate log) from Section 2 and the Pre-Publish Checklist`
 `v2.1 — Mermaid diagrams are now a default requirement for any flow/pipeline/architecture concept in Section 7, not optional`
 `v2.2 — every notebook must begin with a single `!pip install` cell (CQ-10) installing all required modules so learners can install dependencies directly`
+`v3.0 — every lab now ships a required assignment file (`lab-<slug>-assignment.md`) with knowledge-check exercises and an answer key (UX-7)`
 
 ---
 
@@ -16,6 +17,7 @@
 **Lab file formats:** Every lab consists of:
 - A **markdown file** (`.md`) — the narrative, instructions, and explanations (required for all labs)
 - A **notebook file** — either `.ipynb` (Jupyter) OR `.py` (Python script with comments/markdown as docstrings)
+- An **assignment file** (`lab-<topic-slug>-assignment.md`) — a set of exercises that let learners test their knowledge after completing the lab (required for all labs)
 - Any supporting files genuinely needed (data files, config, etc.)
 
 A `.py` file is useful for labs focused on script/module development rather than exploration. Use `.ipynb` for exploratory, visual, or step-by-step learning; use `.py` for clean, production-like code labs. Both follow the same 12-section structure.
@@ -450,13 +452,16 @@ Write as "you will build...", not "one might construct...". Any term not obvious
 If one lab explains code line-by-line, all labs do. A learner shouldn't get lucky with a well-explained lab and then hit a sparse one — depth of explanation is a catalog-wide standard, not an author's personal style.
 
 **UX-4. Consistent file naming.**
-`lab-<topic-slug>.ipynb` and `lab-<topic-slug>.md`, same slug, sitting in the same folder. Predictable naming lets learners (and tooling) navigate the catalog without guessing.
+`lab-<topic-slug>.ipynb`, `lab-<topic-slug>.md`, and `lab-<topic-slug>-assignment.md`, same slug, sitting in the same folder. Predictable naming lets learners (and tooling) navigate the catalog without guessing.
 
 **UX-5. Consistent framing of Section 11 and 12.**
 The Optional Exercise is always phrased as a concrete action ("Now change X to Y"), never a vague suggestion ("you could also explore..."). "What We Learnt" always ties back explicitly to the concepts named in Section 7, so the loop closes.
 
 **UX-6. Consistent difficulty and time signaling.**
 Add a short header line under the Lab Title stating estimated time and prerequisite level (e.g., `~40 min · Intermediate · Requires Lab 3`), so learners can self-select before committing time.
+
+**UX-7. Every lab ships with an assignment.**
+Every lab includes a `lab-<topic-slug>-assignment.md` file of exercises that let learners test their knowledge after completing the lab. The assignment is **required** and is separate from Section 11's Optional Exercise: it is a standalone practice sheet of 5–10 exercises scaled to the lab's difficulty, mixing concept questions, short code tasks, and applied tasks. It ends with an answer key (with brief explanations, not just answers) so learners can self-check. Exercises must be doable from the lab alone and attemptable without re-running the notebook.
 
 ---
 
@@ -609,6 +614,7 @@ Every lab must clear this list:
 - [ ] Compute/cost requirements disclosed
 - [ ] Mermaid diagram present for any pipeline/flow/architecture concept in Section 7, and renders correctly
 - [ ] First code cell runs `!pip install` for all required modules
+- [ ] Assignment file `lab-<topic-slug>-assignment.md` exists with exercises and an answer key
 
 ---
 
@@ -627,4 +633,4 @@ Each amendment updates the version footer below and MUST be accompanied by a sum
 
 **Compliance review:** The Pre-Publish Checklist (Section 7) is the enforcement point. Any lab that fails a checklist item is not published until it passes.
 
-**Version**: 2.2.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06
+**Version**: 3.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06
