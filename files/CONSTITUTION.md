@@ -5,6 +5,7 @@
 **Amendments:** If a principle stops making sense for a real lab, that's a signal to revise this document, not to quietly break the rule. Propose the change, update this file, note the version/date below.
 
 `v1.0 — initial governing document`
+`v2.0 — removed the Lab Tracker requirement (Excel/CSV gate log) from Section 2 and the Pre-Publish Checklist`
 
 ---
 
@@ -240,40 +241,9 @@ For a given topic, check these factors to place it on the difficulty scale:
 | **Real-world applicability** | Educational toy; not production-ready | Can be production-ready with scaling | Already production-shaped; focuses on nuance |
 | **Typical learner goal** | "I want to understand X" | "I want to build with X" | "I want to optimize/specialize X" |
 
-#### How to Label Labs and Track Tests
+#### How to Label Labs
 
 **1. Add a header line under the Lab Title (see UX-6)** with the difficulty, time estimate, and prerequisites. This makes self-selection easy for learners.
-
-**2. Maintain a Lab Tracker** — An Excel or CSV file that documents each lab's testing and metadata. Use this format:
-
-| Field | Description | Example |
-|-------|-------------|---------|
-| **Lab Title** | Name of the lab | "Semantic Search with Embeddings" |
-| **Lab Slug** | File name slug | `lab-semantic-search` |
-| **Difficulty** | Beginner / Intermediate / Advanced | Intermediate |
-| **Test Case ID** | Unique ID for tracking | TC-001 |
-| **Test Case Description** | What is being tested (e.g., "Fresh environment setup") | "Verify Section 9 setup creates working environment" |
-| **Input / Steps** | Input data or execution steps | "Run pip install -r requirements.txt in clean venv" |
-| **Expected Result** | Expected output or behavior | "All dependencies install; jupyter notebook command works" |
-| **Actual Result & Status** | Actual output and Pass/Fail | "PASS: All dependencies installed in 2 min" |
-| **Gate Completed** | Which gate(s) passed | Gate 1, Gate 2, Gate 3, Gate 4, Gate 5 |
-| **Test Date** | When testing was performed | 2026-08-05 |
-| **Tester** | Person who performed the test | Alice Smith |
-| **Notes** | Any issues, gotchas, or clarifications | "Weaviate import requires separate setup; documented in Section 9" |
-
-**Purpose:** The tracker serves three functions:
-1. **Documentation** — A record of what was tested and when, useful for audits and re-validation when dependencies drift.
-2. **Traceability** — Links test cases to specific lab sections (Section 9 for Gate 1, Section 11 for Gate 4, etc.).
-3. **Catalog health** — At a glance, see which labs have passed all five gates and which need re-testing due to dependency updates.
-
-**Example tracker entry:**
-
-| Lab Title | Test Case ID | Test Case Description | Input / Steps | Expected Result | Actual Result & Status | Gate Completed | Test Date | Tester |
-|-----------|--------------|----------------------|----------------|-----------------|------------------------|----------------|-----------|--------|
-| Your First RAG System | TC-RAG-001 | Fresh environment setup | Copy Section 9 commands to clean venv | All deps install, jupyter works | PASS: 3 min setup time | Gate 1 | 2026-08-05 | Bob |
-| Your First RAG System | TC-RAG-002 | Notebook runs end-to-end | Restart & Run All in Jupyter | No errors, output matches Section 5 | PASS: 12 min runtime | Gate 2 | 2026-08-05 | Bob |
-| Your First RAG System | TC-RAG-003 | Optional Exercise works | Swap Weaviate for Milvus per Section 11 | Modified code runs, retrieval works | PASS: Exercise completed | Gate 4 | 2026-08-05 | Bob |
-| Your First RAG System | TC-RAG-004 | Reviewer walkthrough | Second person reads & runs lab | Reviewer reports clear, no blockers | PASS: Reviewer Alice confirmed | Gate 5 | 2026-08-06 | Alice |
 
 ---
 
@@ -631,7 +601,6 @@ Every lab must clear this list:
 - [ ] Difficulty header + time estimate under title
 - [ ] Compute/cost requirements disclosed
 - [ ] Mermaid diagrams (if used) render correctly
-- [ ] Lab Tracker updated with all 5 gates logged
 
 ---
 
@@ -650,4 +619,4 @@ Each amendment updates the version footer below and MUST be accompanied by a sum
 
 **Compliance review:** The Pre-Publish Checklist (Section 7) is the enforcement point. Any lab that fails a checklist item is not published until it passes.
 
-**Version**: 1.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-05
+**Version**: 2.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06

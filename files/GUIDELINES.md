@@ -135,47 +135,6 @@ chunked_docs = chunk_documents(documents)  # What does this do? Go read the func
 - Use it multiple times so the learner sees why you abstracted it.
 - Explain in markdown *why* you extracted this into a function (usually "we use this pattern three times, so...").
 
-## Creating Your Lab Tracker Entry
-
-Once you complete a lab and pass the testing gates, create an entry in the **Lab Tracker** — an Excel/CSV file that documents the lab's metadata and test results.
-
-**Why:** The tracker is a living record of which labs have been tested, when,
-and by whom. It's especially useful when dependencies drift and you need to
-re-validate labs.
-
-**What to track:** For each lab, add rows covering the five gates:
-- **Gate 1:** Fresh environment setup test
-- **Gate 2:** Restart & Run All test
-- **Gate 3:** Output verification test
-- **Gate 4:** Optional Exercise test
-- **Gate 5:** Reviewer walkthrough
-
-**Columns** (from the CONSTITUTION):
-- Lab Title
-- Lab Slug
-- Difficulty
-- Test Case ID (e.g., TC-001, TC-002)
-- Test Case Description
-- Input / Steps
-- Expected Result
-- Actual Result & Status
-- Gate Completed
-- Test Date
-- Tester
-
-Example entry:
-```
-Lab: "Semantic Search with Embeddings"
-Slug: lab-semantic-search
-Difficulty: Intermediate
-
-TC-001 | Fresh Env Setup | Run Section 9 setup script | Deps install, no errors | PASS | Gate 1 | 2026-08-05 | Alice
-TC-002 | Run All | Restart & Run All | No cell errors, output matches | PASS | Gate 2 | 2026-08-05 | Alice
-TC-003 | Output Match | Compare actual output to Section 5 | Output matches, 10 docs retrieved | PASS | Gate 3 | 2026-08-05 | Alice
-TC-004 | Exercise: Swap DB | Follow Section 11, swap to Pinecone | Works, same interface | PASS | Gate 4 | 2026-08-05 | Alice
-TC-005 | Reviewer Review | Bob reads & runs lab | Clear, no blockers, ready to publish | PASS | Gate 5 | 2026-08-06 | Bob
-```
-
 ## Testing, in Practice
 
 The Constitution defines five gates (TS-1 through TS-5). Walk them in order, one at a time. Don't skip a gate or test out of order — each gate depends on the previous one passing.
@@ -454,7 +413,7 @@ Before you write any code:
 [ ] Difficulty level chosen (Beginner/Intermediate/Advanced)
 [ ] Scope estimated — will it fit the line limit?
 [ ] If too big, split into a series (Lab 2a, Lab 2b, etc.)
-[ ] Using lab-template.md or a blank 12-section structure
+[ ] Using the 12-section structure from the constitution
 [ ] Sections 1–9 drafted (title through setup)
 [ ] Difficulty header line ready (e.g., "Difficulty: Intermediate | ~40 min")
 ```
@@ -517,7 +476,6 @@ TESTING (All 5 Gates)
   [ ] Gate 3: Output matches Section 5
   [ ] Gate 4: Optional Exercise works
   [ ] Gate 5: Second person review complete
-  [ ] Lab Tracker updated with all gates
 
 ENVIRONMENT & DISCLOSURE
   [ ] Compute/cost requirements disclosed

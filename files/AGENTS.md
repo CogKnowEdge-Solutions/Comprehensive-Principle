@@ -34,9 +34,7 @@ update this file to match it, not the other way around.
    If it clearly won't fit, propose a split into a numbered series (`Lab 2a`,
    `Lab 2b`, ...) *before* writing code, not after hitting the limit.
 
-3. **Start from the template**, not a blank file. Use `lab-template.md` (or
-   recreate the Article I section order exactly) so no section is skipped or
-   reordered.
+3. **Start from the 12-section structure in Article I**, not a blank file, so no section is skipped or reordered.
 
 4. **Draft sections 1–9 first** (title through environment setup) before writing
    code — the problem statement and tech stack should drive the implementation,
@@ -60,13 +58,12 @@ update this file to match it, not the other way around.
 7. **Run the Article VI Publish Gate as a literal checklist** and report the
    result of each item. Include a specific check: "Does the code complexity and
    explanation density match the stated difficulty level?" If not, note the gap.
-   Document each gate test result in the Lab Tracker (see GUIDELINES for format).
 
 8. **Name files per Article IV**: Use one of:
    - `lab-<topic-slug>.ipynb` + `lab-<topic-slug>.md` (for Jupyter notebooks)
    - `lab-<topic-slug>.py` + `lab-<topic-slug>.md` (for Python scripts)
    
-   Both formats in same directory with matching slug. Create Lab Tracker entry and populate with gate test results.
+   Both formats in same directory with matching slug.
 
 ## Workflow: Testing a Lab (Applying the Five Gates)
 
