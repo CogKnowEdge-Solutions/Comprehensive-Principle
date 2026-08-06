@@ -47,6 +47,10 @@ update this file to match it, not the other way around.
    Advanced). Minimize helper functions — prefer inline code unless the function
    is called multiple times or teaches a separate concept. Do not write the whole
    notebook first and add explanations after.
+   **The first cell must be a single `!pip install <module> <module> ...` line**
+   (pinned versions, matching Section 6/9) so learners can install everything by
+   running the first cell. For `.py` script labs, document `requirements.txt` in
+   Section 9 instead.
 
 6. **Validate per Article III before calling it done**:
    - Run the notebook top-to-bottom in a fresh kernel/environment built strictly

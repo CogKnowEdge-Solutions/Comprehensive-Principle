@@ -7,6 +7,7 @@
 `v1.0 — initial governing document`
 `v2.0 — removed the Lab Tracker requirement (Excel/CSV gate log) from Section 2 and the Pre-Publish Checklist`
 `v2.1 — Mermaid diagrams are now a default requirement for any flow/pipeline/architecture concept in Section 7, not optional`
+`v2.2 — every notebook must begin with a single `!pip install` cell (CQ-10) installing all required modules so learners can install dependencies directly`
 
 ---
 
@@ -70,6 +71,9 @@ A notebook must run top to bottom in a fresh kernel with no manual steps skipped
 
 **CQ-9. Minimize helper functions — use inline code instead.**
 Every helper function you define requires learners to understand what it does, often by reading code that's separated from where it's used. Where possible, write code inline even if it's slightly longer. Only use a helper function if (a) it's called multiple times in the lab, or (b) it abstracts a concept that's important to teach separately. Inline code is harder to write but easier for learners to follow and modify.
+
+**CQ-10. Every notebook starts with a `!pip install` cell.**
+The first code cell installs every module the lab needs in a single line — `!pip install <module1> <module2> ...` — with pinned versions, so a learner can run the first cell and install everything directly. This mirrors Section 9 but makes the notebook runnable from a fresh kernel without reading markdown first.
 
 ---
 
@@ -471,7 +475,7 @@ If a lab calls a paid LLM API or hosted vector DB, state the approximate cost of
 Use the smallest dataset and lightest model that make the concept visible. Teaching "what is a vector database" doesn't need a million-document corpus — a few hundred rows that a learner can inspect by eye is more valuable than scale for its own sake.
 
 **PF-5. Setup itself is not the bottleneck.**
-Dependency installation is one command against one pinned requirements/environment file (Section 9) — not a scattered series of `pip install`s discovered mid-notebook. If setup takes more than a couple of minutes, that's a defect to fix, not a fact of life.
+Dependency installation is one command against one pinned requirements/environment file (Section 9) — not a scattered series of `pip install`s discovered mid-notebook. The notebook's first cell repeats this as a single `!pip install ...` line (see CQ-10) so the lab runs from a fresh kernel without reading Section 9 first. If setup takes more than a couple of minutes, that's a defect to fix, not a fact of life.
 
 ---
 
@@ -604,6 +608,7 @@ Every lab must clear this list:
 - [ ] Difficulty header + time estimate under title
 - [ ] Compute/cost requirements disclosed
 - [ ] Mermaid diagram present for any pipeline/flow/architecture concept in Section 7, and renders correctly
+- [ ] First code cell runs `!pip install` for all required modules
 
 ---
 
@@ -622,4 +627,4 @@ Each amendment updates the version footer below and MUST be accompanied by a sum
 
 **Compliance review:** The Pre-Publish Checklist (Section 7) is the enforcement point. Any lab that fails a checklist item is not published until it passes.
 
-**Version**: 2.1.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06
+**Version**: 2.2.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06

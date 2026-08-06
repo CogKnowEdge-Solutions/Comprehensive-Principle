@@ -135,6 +135,20 @@ chunked_docs = chunk_documents(documents)  # What does this do? Go read the func
 - Use it multiple times so the learner sees why you abstracted it.
 - Explain in markdown *why* you extracted this into a function (usually "we use this pattern three times, so...").
 
+## First Cell: `!pip install` the Dependencies
+
+**Every notebook's first code cell installs everything the lab needs in one line**, so a learner can install all modules directly by running the first cell:
+
+```python
+!pip install openai==1.35.0 langchain==0.2.5 weaviate-client==4.6.2
+```
+
+- **One line, all modules.** Don't scatter installs through later cells — running the first cell leaves everything ready.
+- **Pin versions** exactly as in Section 6 / Section 9 so the notebook and the setup instructions never drift.
+- **`.py` script labs:** a script can't run `!pip` — keep installs in Section 9 via `requirements.txt` + `pip install -r requirements.txt`, and note that in the checklist.
+- **Explain the cell.** One sentence right under it, e.g., "This installs the exact versions of every library used in this lab."
+- **Gate 2 test includes it.** When you `Restart & Run All`, the `!pip install` cell runs first and must succeed in a fresh environment (which your Gate 1 environment is).
+
 ## Testing, in Practice
 
 The Constitution defines five gates (TS-1 through TS-5). Walk them in order, one at a time. Don't skip a gate or test out of order — each gate depends on the previous one passing.
@@ -480,6 +494,7 @@ TESTING (All 5 Gates)
 ENVIRONMENT & DISCLOSURE
   [ ] Compute/cost requirements disclosed
   [ ] Dependencies pinned (Section 6, 9)
+  [ ] First code cell runs `!pip install` for all required modules (.py labs: `requirements.txt`)
   [ ] No hardcoded credentials
 
 CONSISTENCY
