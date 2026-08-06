@@ -6,6 +6,7 @@
 
 `v1.0 — initial governing document`
 `v2.0 — removed the Lab Tracker requirement (Excel/CSV gate log) from Section 2 and the Pre-Publish Checklist`
+`v2.1 — Mermaid diagrams are now a default requirement for any flow/pipeline/architecture concept in Section 7, not optional`
 
 ---
 
@@ -476,9 +477,11 @@ Dependency installation is one command against one pinned requirements/environme
 
 ## 6. Visualizing Concepts with Mermaid Diagrams
 
-Section 7 (Underlying Concepts) should teach the *why* behind a lab's code. Sometimes prose alone isn't enough — a diagram can make a concept click. **Use Mermaid diagrams** to explain complex systems, flows, relationships, and decision trees within your labs.
+Section 7 (Underlying Concepts) should teach the *why* behind a lab's code. **Use Mermaid diagrams as the default way to explain any system, flow, relationship, or decision tree in your labs** — a diagram can make a concept click in a way prose alone can't. Include at least one Mermaid diagram whenever the lab involves a pipeline, architecture, workflow, or any multi-step process. Treat the diagram as a standard part of the lab, not an optional extra.
 
 ### When to Use Mermaid Diagrams
+
+**Default: use a Mermaid diagram when any of the following applies.**
 
 - **System architectures:** Showing how components connect (e.g., "a RAG system: documents → vector DB → retriever → LLM → output").
 - **Data pipelines:** Visualizing transformations (e.g., "raw text → chunking → embedding → indexing → search").
@@ -600,7 +603,7 @@ Every lab must clear this list:
 - [ ] File names follow `lab-<topic-slug>.{ipynb|py}` and `lab-<topic-slug>.md`
 - [ ] Difficulty header + time estimate under title
 - [ ] Compute/cost requirements disclosed
-- [ ] Mermaid diagrams (if used) render correctly
+- [ ] Mermaid diagram present for any pipeline/flow/architecture concept in Section 7, and renders correctly
 
 ---
 
@@ -619,4 +622,4 @@ Each amendment updates the version footer below and MUST be accompanied by a sum
 
 **Compliance review:** The Pre-Publish Checklist (Section 7) is the enforcement point. Any lab that fails a checklist item is not published until it passes.
 
-**Version**: 2.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06
+**Version**: 2.1.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06
