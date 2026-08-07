@@ -9,6 +9,7 @@
 `v2.1 — Mermaid diagrams are now a default requirement for any flow/pipeline/architecture concept in Section 7, not optional`
 `v2.2 — every notebook must begin with a single `!pip install` cell (CQ-10) installing all required modules so learners can install dependencies directly`
 `v3.0 — every lab now ships a required assignment file (`lab-<slug>-assignment.md`) with knowledge-check exercises and an answer key (UX-7)`
+`v4.0 — Testing Standards removed from this document; the five-gate validation workflow now lives in AGENTS.md, with TEST.md as the companion testing guide`
 
 ---
 
@@ -254,193 +255,7 @@ For a given topic, check these factors to place it on the difficulty scale:
 
 ---
 
-## 3. Testing Standards
-
-### Universal Testing Rules (Apply to All Labs)
-
-**TS-1. Definition of done = clean run in a fresh environment.**
-Before a lab is considered complete, the author runs `Restart & Run All` (or language equivalent) in a fresh environment built strictly from Section 9's instructions — no shortcuts from a pre-configured machine.
-
-**TS-2. The Optional Exercise is tested, not just proposed.**
-If Section 11 says "swap Weaviate for Milvus," the author (or a reviewer) actually does that swap and confirms it works before publishing. An untested exercise is a guess dressed up as an instruction.
-
-**TS-3. Output is verified against what's documented.**
-Section 5's described output must match what the lab actually produces. If you show a sample output, screenshot, or expected value, it's captured from a real run — not written from memory of how it's supposed to look.
-
-**TS-4. Second-pair-of-eyes review before publishing.**
-One other person walks the lab end-to-end — runs the code, reads the explanations, tries the exercise — before it goes live. They're checking for accuracy and clarity, not just "does it run."
-
-**TS-5. Labs are re-validated when dependencies drift.**
-When a pinned library, model, or API has a breaking change, the affected lab is re-run and either confirmed still-working or flagged and queued for a fix. Labs are living artifacts, not one-time publishes.
-
-**TS-6. Broken labs are pulled or flagged immediately, not left live.**
-A lab that no longer runs is worse than no lab — it erodes trust in the whole catalog. A visible "known issue" banner beats silence.
-
----
-
-### Testing Format & Execution Framework
-
-Every lab must pass the tests below. Perform them in order; each section is a gate. A lab cannot be published if any gate fails.
-
-#### Gate 1: Fresh Environment Setup Test
-
-**Objective:** Verify Section 9 produces a working environment from scratch.
-
-**Steps:**
-1. Use a clean environment (not your dev machine).
-2. Copy Section 9 instructions exactly and execute them in order.
-3. Document any errors and exact failure point.
-
-**Pass criteria:** All dependencies install without errors.
-
-**Failure:** Fix Section 9 and re-test. Do not proceed to Gate 2 until Gate 1 passes.
-
----
-
-#### Gate 2: Clean-Run Test (Restart & Run All)
-
-**Objective:** Notebook/script runs top-to-bottom with no manual intervention.
-
-**Steps:**
-1. Open the notebook/script in fresh environment from Gate 1.
-2. For `.ipynb`: Clear outputs, restart kernel, run all cells.
-3. For `.py`: Execute the script end-to-end with no pauses.
-4. Document any cell/section that fails with exact error.
-
-**Pass criteria:** All cells/sections run without errors; output matches Section 5.
-
-**Failure:** Fix the code/dependencies, restart from Gate 1, then re-test Gate 2.
-
----
-
-#### Gate 3: Output Verification Test
-
-**Objective:** Actual output matches Section 5's documented output.
-
-**Steps:**
-1. After Gate 2 passes, capture actual output.
-2. Compare to Section 5 (tables, plots, values, sample output).
-3. Document any discrepancies.
-
-**Pass criteria:** Output matches in kind and substance. Minor formatting OK; missing rows/values are failures.
-
-**Failure:** Update Section 5 to match actual output (if code is right) OR fix code (if docs are right). Re-test Gate 2 → Gate 3.
-
----
-
-#### Gate 4: Optional Exercise Test
-
-**Objective:** Section 11's exercise actually works as written, not theoretical.
-
-**Steps:**
-1. Read Section 11 exercise instruction carefully.
-2. Perform the modification exactly as written.
-3. Run modified cells/script; confirm sensible output.
-4. Document what changed, what worked, and any gotchas.
-
-**Pass criteria:** A learner following Section 11 can complete the exercise without getting stuck.
-
-**Failure:** Either fix the lab code/dependencies, or rewrite Section 11 to reflect what works. Re-test the exercise. Do not publish untested exercises.
-
----
-
-#### Gate 5: Reviewer Walkthrough
-
-**Objective:** Second person verifies the lab works, is clear, and is accurate (end-to-end).
-
-**Steps:**
-1. Give reviewer the notebook/script and markdown file.
-2. Give them Section 9 setup instructions for clean environment.
-3. Ask reviewer to: read markdown, run notebook/script, try exercise, note any confusion/errors.
-4. Collect feedback.
-
-**Pass criteria:** Reviewer completes the lab without clarifications or unexpected errors. Reports lab is clear and accurate.
-
-**Failure:** Fix issues found, re-test affected gates.
-
----
-
-### Testing Format by Difficulty Level
-
-The gates above apply to all labs. The *rigor* and *depth* of testing scales with difficulty.
-
-#### Beginner Lab Testing
-
-**Additional focus areas:**
-- **Every explanation is clear.** Ask the reviewer: "If you were new to this concept, would this make sense?" 
-- **No unexplained libraries or calls.** For a Beginner lab, "now we call `.fit()`" without saying what that does is a failure.
-- **Output is produced confidently.** If a learner runs the lab, do they know whether it worked? (E.g., show a simple success message or table.)
-- **Errors are caught early.** If a Beginner's first mistake is on cell 8, that's too late — catch and guide earlier.
-
-**Test report should include:**
-- Any cell where a Beginner might get confused.
-- Any assumption you're making that a Beginner might not know.
-- Confirmation that explanations are at the right depth (not too basic, not too advanced).
-
-#### Intermediate Lab Testing
-
-**Additional focus areas:**
-- **The optional exercise is realistic.** Can a learner who's built the main pipeline actually complete the variant suggested in Section 11?
-- **Design decisions are visible.** If you chose to use batch_size=50 or a specific chunking strategy, is the rationale explained?
-- **Output is debuggable.** If the learner's optional exercise doesn't work, can they inspect intermediate values and figure out why?
-
-**Test report should include:**
-- Whether the optional exercise is genuinely different from the main build or just a tweak.
-- Whether a learner could adapt the exercise to their own use case afterward.
-- Any parts of the code that would benefit from a comment explaining the choice.
-
-#### Advanced Lab Testing
-
-**Additional focus areas:**
-- **Edge cases are handled.** If the lab's technique fails on certain inputs or at scale, is that acknowledged?
-- **Tradeoffs are visible.** If you chose reranking over simple scoring, or LoRA over full fine-tuning, is the cost/benefit clear?
-- **The optional exercise is ambitious.** Can it serve as a jumping-off point for further research or extension?
-
-**Test report should include:**
-- Any limitations of the approach (accuracy tradeoffs, cost, computational complexity, failure modes).
-- Whether a learner could take this lab and extend it to production use.
-- Any subtle performance considerations that affect how the code is written.
-
----
-
-### Testing Checklist (Practical)
-
-Quick checklist for all five gates:
-
-```
-GATE 1: Fresh Environment Setup
-  [ ] Clean environment (venv, container, or VM)
-  [ ] Section 9 instructions copied exactly
-  [ ] All commands executed without error
-
-GATE 2: Clean Run
-  [ ] Notebook/script runs top-to-bottom
-  [ ] No cell/section failures
-  [ ] Output matches Section 5
-
-GATE 3: Output Verification
-  [ ] Actual output matches Section 5
-  [ ] No missing rows, columns, or major differences
-
-GATE 4: Optional Exercise
-  [ ] Exercise performed exactly as written
-  [ ] Modified code runs without error
-  [ ] Output is sensible
-
-GATE 5: Reviewer Walkthrough
-  [ ] Second person: reads markdown, runs code, tries exercise
-  [ ] No blocking confusion or errors
-  [ ] Feedback addressed
-
-DIFFICULTY-SPECIFIC:
-  Beginner: [ ] Explanations clear
-  Intermediate: [ ] Exercise realistic
-  Advanced: [ ] Tradeoffs visible
-```
-
----
-
-## 4. User Experience Consistency
+## 3. User Experience Consistency
 
 **UX-1. Structural consistency is non-negotiable.**
 Every lab uses the exact 12-section template in Section 1, in the same order, with the same headings. Consistency here is what lets a learner navigate lab 12 as confidently as lab 1.
@@ -465,7 +280,7 @@ Every lab includes a `lab-<topic-slug>-assignment.md` file of exercises that let
 
 ---
 
-## 5. Performance Requirements
+## 4. Performance Requirements
 
 **PF-1. Runtime budget: ~30–45 minutes end-to-end, including setup.**
 This covers reading, environment setup, running the code, and the optional exercise. If a real build exceeds this comfortably, split it into a lab series rather than letting one lab run long.
@@ -484,7 +299,7 @@ Dependency installation is one command against one pinned requirements/environme
 
 ---
 
-## 6. Visualizing Concepts with Mermaid Diagrams
+## 5. Visualizing Concepts with Mermaid Diagrams
 
 Section 7 (Underlying Concepts) should teach the *why* behind a lab's code. **Use Mermaid diagrams as the default way to explain any system, flow, relationship, or decision tree in your labs** — a diagram can make a concept click in a way prose alone can't. Include at least one Mermaid diagram whenever the lab involves a pipeline, architecture, workflow, or any multi-step process. Treat the diagram as a standard part of the lab, not an optional extra.
 
@@ -589,16 +404,16 @@ graph LR
 
 ### Testing Diagrams
 
-When you test your lab (Gates 1–5), verify:
+When you test your lab (the five gates in AGENTS.md), verify:
 - **The diagram renders.** Open the markdown in GitHub/GitLab/Jupyter and confirm it displays.
 - **The diagram is accurate.** Does it truthfully represent the concept? Ask your reviewer: "Does this diagram match how the code actually works?"
 - **The diagram adds clarity.** Could a beginner understand this concept better because of the diagram, or would prose alone be clearer?
 
 ---
 
-## 7. Pre-Publish Checklist
+## 6. Pre-Publish Checklist
 
-Every lab must clear this list:
+Every lab must clear this list. Test-gate items below are executed per the five-gate workflow in `AGENTS.md`.
 
 - [ ] Follows 12-section template (Section 1, headings intact)
 - [ ] File format: `.ipynb` or `.py` + `.md` file (matching slug name)
@@ -631,6 +446,6 @@ This constitution supersedes any ad hoc convention adopted for an individual lab
 
 Each amendment updates the version footer below and MUST be accompanied by a summary of what changed.
 
-**Compliance review:** The Pre-Publish Checklist (Section 7) is the enforcement point. Any lab that fails a checklist item is not published until it passes.
+**Compliance review:** The Pre-Publish Checklist (Section 6) is the enforcement point. Any lab that fails a checklist item is not published until it passes.
 
-**Version**: 3.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-06
+**Version**: 4.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-08-07

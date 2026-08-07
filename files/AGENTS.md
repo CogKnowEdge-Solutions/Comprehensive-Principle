@@ -14,9 +14,10 @@ update this file to match it, not the other way around.
   different. If a request conflicts with an Article, say so explicitly and give
   the user the actual options (see "Handling Conflicts" below) — never comply
   quietly and never refuse without explaining the alternative.
-- Do not fabricate results. If Article III requires a clean-environment run, an
-  Optional Exercise test, or verified output, you must actually execute those
-  steps and report what really happened — not what should happen in theory.
+- Do not fabricate results. If a validation gate in this file requires a
+  clean-environment run, an Optional Exercise test, or verified output, you must
+  actually execute those steps and report what really happened — not what should
+  happen in theory.
 
 ## Workflow: Creating a New Lab
 
@@ -52,7 +53,7 @@ update this file to match it, not the other way around.
    running the first cell. For `.py` script labs, document `requirements.txt` in
    Section 9 instead.
 
-6. **Validate per Article III before calling it done**:
+6. **Validate per the five gates below before calling it done**:
    - Run the notebook top-to-bottom in a fresh kernel/environment built strictly
      from your own Section 9 instructions.
    - Actually perform the Optional Exercise (Section 11) and confirm it works.
@@ -64,7 +65,7 @@ update this file to match it, not the other way around.
    result of each item. Include a specific check: "Does the code complexity and
    explanation density match the stated difficulty level?" If not, note the gap.
 
-8. **Name files per Article IV**: Use one of:
+8. **Name files per Article III (UX-4)**: Use one of:
    - `lab-<topic-slug>.ipynb` + `lab-<topic-slug>.md` (for Jupyter notebooks)
    - `lab-<topic-slug>.py` + `lab-<topic-slug>.md` (for Python scripts)
    
@@ -74,7 +75,18 @@ update this file to match it, not the other way around.
 
 ## Workflow: Testing a Lab (Applying the Five Gates)
 
-After creating or editing a lab, you must execute all five gates from `CONSTITUTION.md` Section 3 in order. **Do not skip any gate.** A lab cannot pass testing if any gate fails.
+The five gates below are the end-to-end lab validation workflow. Execute them in
+order after creating or editing a lab — **do not skip any gate.** A lab cannot
+pass validation if any gate fails. The gates are defined here in AGENTS.md; they
+are no longer part of `CONSTITUTION.md` (see its version history).
+
+**Where `TEST.md` fits:** `TEST.md` (the Comprehensive Testing Guide) is the
+companion document for designing and running tests on any code the lab or its
+supporting files ship — general test-case design, the RED → GREEN → REFACTOR TDD
+cycle, pytest commands, and troubleshooting. When a lab has testable logic,
+write its tests using TEST.md's framework; the gates below then validate the lab
+artifact itself (notebook/script + markdown) end to end. The two are
+complementary, not alternatives.
 
 **Gate 1: Fresh Environment Setup**
 1. Identify where the fresh environment will be created (venv, container, system).
@@ -157,10 +169,11 @@ Overall: READY TO PUBLISH / NEEDS REWORK
 
 1. Before claiming a lab still works, re-run all five gates — dependency drift is common and silent.
 2. If an edit changes line count, re-check it against Article II's ceiling for the difficulty level.
-3. If an edit changes any of Sections 1–12, re-check Article IV consistency against at least one other published lab at the same difficulty level.
+3. If an edit changes any of Sections 1–12, re-check Article III (UX-3) consistency against at least one other published lab at the same difficulty level.
 4. If you edit the assignment file, re-attempt its exercises and verify the answer key still matches the (possibly changed) lab.
 5. Re-run all five gates after any non-trivial edit, not just the tests you think changed.
 6. If you make structural changes (e.g., add a new cell early in the pipeline), report which gates needed re-testing.
+7. If a lab no longer runs, pull it or flag it with a visible "known issue" banner immediately — a broken lab is worse than no lab.
 
 ## Handling Gate Failures
 
