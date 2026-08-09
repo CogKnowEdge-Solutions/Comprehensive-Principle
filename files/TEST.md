@@ -4,6 +4,16 @@ This guide provides a complete framework for testing any lab, pipeline, API, or 
 
 ---
 
+## Mandatory Test File Format
+
+**MUST — Test cases are written as pytest `.py` files.** All test cases for any lab, pipeline, API, or application MUST be authored in a standalone Python test file (e.g., `test_agent.py`) using the pytest framework, and MUST be run with the `pytest` command.
+
+**MUST NOT — Test cases are never written or executed in notebooks.** Test cases MUST NOT be authored, stored, or executed inside Jupyter notebooks (`.ipynb`) — not as notebook cells, not as an `.ipynb`-based test runner, and not as a `!pytest` invocation in a notebook cell. A notebook may *demonstrate* interactive testing for teaching, but the authoritative test cases for the project always live in `.py` files.
+
+**Why:** Notebook tests silently accumulate state, skip or reorder cells, and cannot run headlessly in CI. `.py` pytest files are deterministic, independent, repeatable, and CI-friendly — the mandatory format for every test case.
+
+---
+
 ## Table of Contents
 
 1. [General Test Case Design Framework](#general-test-case-design-framework)

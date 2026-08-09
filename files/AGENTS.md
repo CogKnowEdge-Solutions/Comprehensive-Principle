@@ -88,6 +88,12 @@ write its tests using TEST.md's framework; the gates below then validate the lab
 artifact itself (notebook/script + markdown) end to end. The two are
 complementary, not alternatives.
 
+**Test file format is non-negotiable:** Test cases MUST be authored in
+standalone pytest `.py` files (e.g., `test_agent.py`), never inside `.ipynb`
+notebooks. Do not write test cases as notebook cells or as `!pytest` calls in a
+notebook — if you find tests embedded in a notebook, move them to a `.py` test
+file before validating. See TEST.md's "Mandatory Test File Format".
+
 **Gate 1: Fresh Environment Setup**
 1. Identify where the fresh environment will be created (venv, container, system).
 2. Create that environment from scratch (do not use your current dev environment).
