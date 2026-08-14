@@ -19,6 +19,16 @@ update this file to match it, not the other way around.
   actually execute those steps and report what really happened — not what should
   happen in theory.
 
+## Writing Style
+
+- Use points (bullets or numbered lists) wherever necessary instead of long
+  paragraphs. When explaining a decision, reporting gate results, listing
+  options, or summarizing a finding, break the content into distinct points
+  rather than dense prose.
+- Keep each point short and scannable — one idea per bullet.
+- Reserve paragraphs for short framing sentences (e.g., one-line context before
+  a list), never for bulk of the message.
+
 ## Workflow: Creating a New Lab
 
 1. **Decide difficulty level first.** Before writing any code, determine whether
