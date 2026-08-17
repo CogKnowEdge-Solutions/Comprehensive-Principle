@@ -1,6 +1,6 @@
 # Comprehensive Principle — Labs Project Governance
 
-A set of four governance files that define how agents and authors build, test, and publish labs in this catalog. Drop them into any lab project to enforce consistent structure, difficulty labeling, code quality, and testing across every lab.
+A set of five governance files that define how agents and authors build, test, and publish labs in this catalog. Drop them into any lab project to enforce consistent structure, difficulty labeling, code quality, and testing across every lab.
 
 ## Files
 
@@ -8,6 +8,7 @@ A set of four governance files that define how agents and authors build, test, a
 |------|---------|
 | `files/CONSTITUTION.md` | The source of truth: 12-section lab structure, code quality rules (CQ-1…CQ-10), difficulty standards, and the pre-publish checklist. Versioned with semantic versioning. |
 | `files/AGENTS.md` | Operating procedures for an AI agent: how to create, test, review, and edit labs while staying compliant with the constitution. Defines the five-gate lab validation workflow. |
+| `files/CLAUDE.md` | Quick start guide for Claude Code users: how to fetch these files, use them in Claude Code workflows, common workflows, and troubleshooting. |
 | `files/GUIDELINES.md` | Practical how-to: writing each section well, Mermaid diagrams, the `!pip install` first cell, the assignment file, common pitfalls, and quick-reference checklists. |
 | `files/TEST.md` | Comprehensive testing guide: general test-case design, the TDD cycle (RED → GREEN → REFACTOR), running tests, and troubleshooting. |
 
@@ -31,19 +32,35 @@ git clone https://github.com/CogKnowEdge-Solutions/Comprehensive-Principle.git
 
 ```bash
 curl -o AGENTS.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md
+curl -o CLAUDE.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CLAUDE.md
 curl -o CONSTITUTION.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CONSTITUTION.md
 curl -o GUIDELINES.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/GUIDELINES.md
 curl -o TEST.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/TEST.md
 ```
 
-### Option C — all four files in one command
+### Option C — all five files in one command
 
 ```bash
 curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md -o AGENTS.md \
+  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CLAUDE.md -o CLAUDE.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CONSTITUTION.md -o CONSTITUTION.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/GUIDELINES.md -o GUIDELINES.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/TEST.md -o TEST.md
 ```
+
+## For Claude Code Users
+
+If you're using Claude Code to build or maintain labs with this governance:
+
+1. **Fetch `CLAUDE.md`** — it's a quick-start guide tailored for Claude Code workflows, showing how to invoke Claude Code, common workflows (create, test, edit), tips for consistency, and troubleshooting.
+2. **Place all five files at your lab project root** — Claude Code will automatically read `AGENTS.md` and follow the workflows defined there.
+3. **Invoke Claude Code from your lab directory:**
+   ```bash
+   claude
+   ```
+   Claude Code will then follow the five-gate testing workflow, enforce line ceilings and section structure, and manage the full lab lifecycle.
+
+See `files/CLAUDE.md` for detailed workflows, tips, and guidance specific to Claude Code.
 
 ## What a Compliant Lab Looks Like
 
