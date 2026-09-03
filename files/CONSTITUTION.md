@@ -34,7 +34,7 @@ Every lab's `.md` file follows this section order, exactly. A learner who's done
 | 4 | **Processing** | What happens to the data — the pipeline/steps at a conceptual level | Short paragraph or bullets |
 | 5 | **Output** | What the learner should see when it works — describe it concretely | Short paragraph, screenshot/sample output encouraged |
 | 6 | **Tech Stack** | Every library, model, API, and service used, with version | Bullet list |
-| 7 | **Underlying Concepts** | The theory needed to understand *why*, not just *how* | **Hard cap: 2 pages** |
+| 7 | **Underlying Concepts** | The theory needed to understand *why*, not just *how* | **Suggested pages: 2** (may exceed if the content genuinely requires it) |
 | 8 | **Prerequisites** | Prior labs, background knowledge, accounts/API keys needed | Bullet list, or "None" |
 | 9 | **Environment / Dependencies Setup** | Exact steps to get a clean environment running | Copy-pasteable commands |
 | 10 | **Step-wise Development Instructions** | The actual build, in code blocks, each explained (see Code Quality below) | Bulk of the lab |

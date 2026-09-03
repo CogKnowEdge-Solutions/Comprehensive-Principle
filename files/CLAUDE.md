@@ -1,16 +1,5 @@
 # CLAUDE.md — Using Comprehensive Principles with Claude Code
 
-This guide helps Claude Code users and AI agents set up and use the Comprehensive Principles governance system in their lab projects.
-
-## What is Claude Code?
-
-Claude Code is Anthropic's CLI for Claude, available as:
-- A terminal CLI (`claude`)
-- A desktop app (Mac/Windows)
-- A web app (claude.ai/code)
-- IDE extensions (VS Code, JetBrains)
-
-When you invoke Claude Code in your lab project directory, it automatically reads governance files — including `CONSTITUTION.md`, `AGENTS.md`, `GUIDELINES.md`, and `TEST.md` — and follows their rules during your entire session.
 
 ## Quick Start: Fetch and Use in Claude Code
 

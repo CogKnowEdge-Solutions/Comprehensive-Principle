@@ -27,7 +27,7 @@ constitution wins; flag it so this doc can be fixed.
   search 10,000 past tickets by meaning, not keyword") rather than an abstract
   capability ("demonstrates semantic search"). Learners retain concepts better
   when they're anchored to a use case.
-- **Underlying Concepts (2-page cap):** Write it last, after the lab is built —
+- **Underlying Concepts (suggested 2 pages):** Write it last, after the lab is built —
   it's easier to explain a concept once you've implemented it. Use one concrete
   analogy if the concept is abstract (e.g., "a vector embedding is like a GPS
   coordinate for meaning"). Cut anything a learner doesn't need to understand
@@ -268,7 +268,7 @@ head and what's on the page.
 - **Copy-pasted `requirements.txt` from another lab** without checking whether
   every pinned version is actually still needed or still compatible.
 - **Debug prints and dead code left in** from earlier iterations of the build.
-- **Underlying Concepts creeping past 2 pages** because it's tempting to explain
+- **Underlying Concepts stretching well past the suggested 2 pages** because it's tempting to explain
   everything adjacent to the topic, not just what this lab needs.
 - **Cost/hardware requirements omitted** because the author's own machine
   already had a GPU or an API key with credits, so the gap wasn't visible to
