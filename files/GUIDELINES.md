@@ -169,46 +169,44 @@ chunked_docs = chunk_documents(documents)  # What does this do? Go read the func
 
 ## Testing, in Practice
 
-The Constitution defines five gates (TS-1 through TS-5). Walk them in order, one at a time. Don't skip a gate or test out of order — each gate depends on the previous one passing.
+The Constitution calls for five validation gates; `AGENTS.md` is the
+authoritative source for the exact gate steps (Gate 1 Fresh Environment → Gate 5
+Reviewer Walkthrough) and the `TEST.md` framework supplies the test-case design.
+Walk the gates in order, one at a time — don't skip a gate or test out of order;
+each depends on the previous one passing. What follows is the practical color
+and the failure modes each gate tends to trip on, not a replacement for the
+steps in `AGENTS.md`.
 
 ### Gate 1: Fresh Environment Setup
 Start with a truly clean slate. This is where most labs fail silently:
-- **What to do:** Open a new terminal, new venv, or a container. Pretend you've never installed anything for this project. Copy Section 9's instructions *word-for-word* and run them.
-- **What breaks most:** Missing a dependency, forgetting to pin a version, assuming a system library is pre-installed, or hardcoding a path that only exists on your machine.
-- **How to fix:** Update Section 9 to include the missing step, test again.
-
-**Example: Gate 1 failure and fix**
+- **Common failure modes:** Missing a dependency, forgetting to pin a version,
+  assuming a system library is pre-installed, or hardcoding a path that only
+  exists on your machine.
+- **Example failure and fix:**
 ```
 Author tests, runs: pip install langchain weaviate-client
 Gate 1 test runs: pip install -r requirements.txt
 Result: ModuleNotFoundError: No module named 'weaviate'
 
-Fix: Add weaviate-client to requirements.txt (it wasn't pinned), 
+Fix: Add weaviate-client to requirements.txt (it wasn't pinned),
 re-test Gate 1. Now it passes.
 ```
 
 ### Gate 2: Restart & Run All
-
-**For `.ipynb` files:** Kernel → Restart & Clear Output, then Cell → Run All.
-
-**For `.py` files:** Execute the script end-to-end with `python script.py` (or `python -m script` if it's a module).
-
-Watch it run without touching anything. Common failures:
-- Variables/imports from earlier cells missing
-- Hardcoded paths like `/Users/yourname/data.csv` (use relative paths)
-- Dependencies not pinned in Section 9
-
-**Example fix:** Use `Path(__file__).parent / "data/reviews.csv"` for relative paths.
+For `.ipynb`: Kernel → Restart & Clear Output, then Cell → Run All. For `.py`:
+`python script.py`. Watch it run without touching anything. **Common failures:**
+variables/imports from earlier cells missing, hardcoded paths (use relative
+paths, e.g. `Path(__file__).parent / "data/reviews.csv"`), and dependencies not
+pinned in Section 9.
 
 ### Gate 3: Output Verification
-After Gate 2, look at what the notebook actually printed/displayed. Compare to Section 5.
-
-**What goes wrong:** You write Section 5 from memory ("the output should show a table with sentiment scores") but the actual notebook shows something slightly different (a list of dicts, not a formatted table). Or the number of rows is different than you expected.
-
-**How to fix:** Run a fresh Gate 2 to get the actual output, screenshot it if applicable, and update Section 5 to match what actually happens. Include sample output in Section 5 so future readers know what to expect.
+Look at what the notebook actually printed and compare to Section 5. The usual
+trap is writing Section 5 from memory ("should show a table") when the real
+output differs. **Fix:** run a fresh Gate 2 to get actual output, screenshot it,
+and update Section 5 to match what really happens.
 
 ### Gate 4: Optional Exercise Test
-Actually do what Section 11 says. Don't just think "this should work." 
+Actually do what Section 11 says — don't just think "this should work."
 
 **Example: Gate 4 test**
 ```
@@ -227,32 +225,24 @@ What Gate 4 finds:
 What you do:
 - Document these changes in your test report
 - Consider updating Section 11 to note the initialization difference
-- Or, if it's too different, change Section 11 to "swap to Pinecone instead" 
+- Or, if it's too different, change Section 11 to "swap to Pinecone instead"
   (if Pinecone works cleanly)
 ```
 
-**Why this matters:** An exercise that sounded good but fails is worse than no exercise. A learner who follows your instructions and hits a wall blames the lab.
+**Why this matters:** An exercise that sounded good but fails is worse than no
+exercise. A learner who follows your instructions and hits a wall blames the lab.
 
 ### Gate 5: Reviewer Walkthrough
-Have someone else (not you) do all four gates above. They:
-- Read the markdown without running code first (catches confusing explanations).
-- Set up the environment fresh (catches Gate 1 failures).
-- Run the notebook (catches Gate 2 failures).
-- Try the exercise (catches Gate 4 failures).
-- Report any confusion, errors, or unclear sections.
+Have someone else (not you) do all four gates above — they read the markdown
+without running code first (catches confusing explanations), set up fresh (Gate
+1), run the notebook (Gate 2), and try the exercise (Gate 4).
 
-**What reviewers often find that authors miss:**
-- A step that feels obvious to you but is unexplained.
-- An assumption you're making ("this is Python" or "you know what embeddings are") that isn't stated.
-- A typo in Section 9 that broke setup but didn't break it on your machine because you had the package installed already.
-- An explanation that's too terse for the stated difficulty level.
-
-**Common reviewer feedback:**
-- "This cell made me confused because..." → Clarify or add a comment.
-- "I got stuck here..." → Fix the code or the instructions.
-- "I didn't understand why you chose X over Y." → Add a comment explaining the choice.
-
-Treat reviewer feedback as data. They're not critiquing you; they're showing you the gaps between what's in your head and what's on the page.
+**What reviewers often find that authors miss:** a step that feels obvious to
+you but is unexplained; an unstated assumption ("you know what embeddings are");
+a typo in Section 9 that didn't break on your machine because you already had
+the package; an explanation too terse for the stated difficulty level. Treat
+reviewer feedback as data — they're showing you the gaps between what's in your
+head and what's on the page.
 
 ---
 
@@ -443,7 +433,7 @@ Before you write any code:
 
 ```
 [ ] Difficulty level chosen (Beginner/Intermediate/Advanced)
-[ ] Scope estimated — near the line reference? (reference, not a hard cap)
+[ ] Scope estimated — near the Article II line reference? (reference, not a hard cap)
 [ ] If too big, split into a series (Lab 2a, Lab 2b, etc.)
 [ ] Using the 12-section structure from the constitution
 [ ] Sections 1–9 drafted (title through setup)
@@ -451,74 +441,14 @@ Before you write any code:
 ```
 
 ### Testing Checklist (Five Gates)
-After you build, test in order. Each gate must pass before moving to the next:
-
-```
-GATE 1: Fresh Environment Setup
-  [ ] Clean environment created (not your dev machine)
-  [ ] Section 9 instructions copied exactly
-  [ ] All commands executed without error
-  [ ] Environment ready to run notebook
-
-GATE 2: Restart & Run All
-  [ ] Notebook outputs cleared
-  [ ] Kernel restarted
-  [ ] "Run All" executed without manual intervention
-  [ ] No cells failed
-  [ ] Notebook completed successfully
-
-GATE 3: Output Verification
-  [ ] Actual output matches Section 5 description
-  [ ] Screenshots/samples in Section 5 match visually
-  [ ] No missing rows, columns, or major differences
-  [ ] Section 5 updated if actual output differed
-
-GATE 4: Optional Exercise
-  [ ] Exercise performed exactly as Section 11 describes
-  [ ] Modified cells ran without error
-  [ ] Output is sensible
-  [ ] Any gotchas documented
-
-GATE 5: Reviewer Walkthrough
-  [ ] Second person reviewed markdown
-  [ ] Second person set up fresh environment
-  [ ] Second person ran notebook successfully
-  [ ] Second person completed Optional Exercise
-  [ ] No blocking feedback remained unresolved
-```
+After you build, test in order — each gate must pass before the next. The
+step-by-step procedure for each gate lives in `AGENTS.md` (Gate 1 Fresh
+Environment → Gate 5 Reviewer Walkthrough) and the failure modes are above; run
+them in that document's order and report PASSED/FAILED per gate.
 
 ### Pre-Publish Checklist
-Before submitting a lab:
-
-```
-STRUCTURE & FILES
-  [ ] 12-section markdown (.md) file complete
-  [ ] Code file: .ipynb or .py (match `lab-<topic-slug>` slug)
-  [ ] Assignment file `lab-<topic-slug>-assignment.md` present with 5–10 exercises + answer key
-  [ ] Every assignment exercise attempted and answer key verified
-  [ ] Code near line reference: Beginner ≤110, Intermediate ≤150, Advanced ≤180 (reference, not a hard cap)
-  [ ] Every block explained; non-obvious lines commented
-  [ ] Helper functions minimized; inline code preferred
-
-CONCEPTS & DIAGRAMS
-  [ ] Section 7 (concepts) ≤2 pages
-  [ ] Mermaid diagram(s) used for Section 7 concepts; render and are followed by prose
-
-TESTING (All 5 Gates)
-  [ ] Gate 1: Fresh environment setup passes
-  [ ] Gate 2: Code runs top-to-bottom without errors
-  [ ] Gate 3: Output matches Section 5
-  [ ] Gate 4: Optional Exercise works
-  [ ] Gate 5: Second person review complete
-
-ENVIRONMENT & DISCLOSURE
-  [ ] Compute/cost requirements disclosed
-  [ ] Dependencies pinned (Section 6, 9)
-  [ ] First code cell runs `!pip install` for all required modules (.py labs: `requirements.txt`)
-  [ ] No hardcoded credentials
-
-CONSISTENCY
-  [ ] Difficulty header + time estimate under title
-  [ ] Matches style/depth of peer labs at same difficulty
-  [ ] Voice/tone consistent with catalog
-```
+The authoritative pre-publish checklist is **Section 6 (Pre-Publish Checklist) of
+`CONSTITUTION.md`** — walk it item by item before shipping. It covers structure,
+file format, line reference, code explanations, all five gates, file naming,
+difficulty header, compute/cost disclosure, Mermaid diagrams, the `!pip install`
+first cell, and the assignment file.

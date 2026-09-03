@@ -30,12 +30,7 @@
    limits, explanation density, code style, and library usage. If uncertain,
    ask the user or propose what you think and let them correct you.
    
-2. **Confirm scope before writing code.** Line limits are a **reference, not a strict cap** — use them to estimate scope and calibrate explanation density, not to truncate or pad a notebook. If the build genuinely needs more lines, it may exceed the limit (per CQ-1). Given the difficulty level, estimate
-   whether the build fits within the reference line range:
-   - Beginner: ≤110 lines
-   - Intermediate: ≤150 lines
-   - Advanced: ≤180 lines
-   If the content naturally divides, prefer splitting into a numbered series (`Lab 2a`, `Lab 2b`...) — but this is a scoping preference, not a hard enforcement.
+2. **Confirm scope before writing code.** Line limits are a **reference, not a strict cap** (see CQ-1 / Article II in `CONSTITUTION.md`) — use them to estimate scope and calibrate explanation density, not to truncate or pad a notebook. If the build genuinely needs more lines, it may exceed the reference; prefer a numbered series split (`Lab 2a`, `Lab 2b`...) when the content naturally divides.
 
 3. **Start from the 12-section structure in Article I**, not a blank file, so no section is skipped or reordered.
 
@@ -51,8 +46,9 @@
    is called multiple times or teaches a separate concept. Do not write the whole
    notebook first and add explanations after.
    **The first cell must be a single `!pip install <module> <module> ...` line**
-   (pinned versions, matching Section 6/9) so learners can install everything by
-   running the first cell. For `.py` script labs, document `requirements.txt` in
+   (pinned versions, matching Sections 6/9) so learners can install everything by
+   running the first cell (CQ-10 in `CONSTITUTION.md`; practical notes in
+   `GUIDELINES.md`). For `.py` script labs, document `requirements.txt` in
    Section 9 instead.
 
 6. **Validate per the five gates below before calling it done**:
@@ -67,13 +63,10 @@
    result of each item. Include a specific check: "Does the code complexity and
    explanation density match the stated difficulty level?" If not, note the gap.
 
-8. **Name files per Article III (UX-4)**: Use one of:
-   - `lab-<topic-slug>.ipynb` + `lab-<topic-slug>.md` (for Jupyter notebooks)
-   - `lab-<topic-slug>.py` + `lab-<topic-slug>.md` (for Python scripts)
-   
-   Both formats in same directory with matching slug. Every lab also ships with
-   `lab-<topic-slug>-assignment.md` — a set of knowledge-check exercises with an
-   answer key (see UX-7), so learners can test what they learned after the lab.
+8. **Name files per Article III (UX-4)** (see `CONSTITUTION.md`): each lab ships a
+   matching-slug `lab-<topic-slug>.ipynb` OR `.py` plus `lab-<topic-slug>.md`,
+   and a `lab-<topic-slug>-assignment.md` of knowledge-check exercises with an
+   answer key (UX-7).
 
 ## Workflow: Testing a Lab (Applying the Five Gates)
 
@@ -90,11 +83,10 @@ write its tests using TEST.md's framework; the gates below then validate the lab
 artifact itself (notebook/script + markdown) end to end. The two are
 complementary, not alternatives.
 
-**Test file format is non-negotiable:** Test cases MUST be authored in
-standalone pytest `.py` files (e.g., `test_agent.py`), never inside `.ipynb`
-notebooks. Do not write test cases as notebook cells or as `!pytest` calls in a
-notebook — if you find tests embedded in a notebook, move them to a `.py` test
-file before validating. See TEST.md's "Mandatory Test File Format".
+**Test file format is non-negotiable:** Test cases MUST be authored in standalone
+pytest `.py` files, never inside `.ipynb` notebooks — see TEST.md's "Mandatory
+Test File Format" for the full rule and how to relocate tests found in a
+notebook.
 
 **Gate 1: Fresh Environment Setup**
 1. Identify where the fresh environment will be created (venv, container, system).
@@ -330,44 +322,18 @@ if __name__ == "__main__":
 
 ## Handling Gate Failures
 
-If a gate fails, **do not skip it** or move forward with an incomplete test. A lab cannot publish without all gates passing.
-
-**If Gate 1 fails (fresh environment setup):**
-- Identify the specific command or step that failed.
-- Fix Section 9 to correct the issue.
-- Re-run Gate 1 from the start (not from the failed step).
-- Do not proceed to Gate 2 until Gate 1 fully passes.
-
-**If Gate 2 fails (notebook run):**
-- Identify which cell failed and why.
-- Fix the cell or its dependencies (could be in an earlier cell, Section 9, or a library issue).
-- Re-run Gate 1 to ensure the fresh environment still works.
-- Re-run Gate 2 from the top.
-- Do not proceed to Gate 3 until Gate 2 fully passes.
-
-**If Gate 3 fails (output mismatch):**
-- Decide: is the code right or the documentation wrong?
-- If code is right, update Section 5 with actual output and screenshot.
-- If documentation is right, fix the code.
-- Re-run Gate 2, then Gate 3 again.
-- Document the discrepancy and how it was resolved.
-
-**If Gate 4 fails (optional exercise):**
-- Identify what went wrong with the exercise.
-- Either fix the lab code and dependencies, or rewrite Section 11 to reflect what actually works.
-- Re-run the exercise to confirm it works.
-- If the issue is significant, report it to the user with options for resolution.
-
-**If Gate 5 fails (reviewer feedback):**
-- Address the reviewer's feedback: fix code, documentation, or both.
-- Document each piece of feedback and how it was resolved.
-- Re-run the gates affected by your fixes.
-- Report back to the reviewer for confirmation if major changes were made.
+If a gate fails, **do not skip it** or move forward with an incomplete test. A
+lab cannot publish without all gates passing. Each gate's own definition above
+already states its failure rule (fix the cause, re-run that gate — and Gate 1
+where the environment is involved — from the top, then move on). Beyond that:
 
 **When to escalate to the user:**
-- A gate fails and the fix is ambiguous (e.g., "the output doesn't match, but I'm not sure if the code or docs are wrong").
-- A gate fails due to missing information (e.g., "I don't have the API key for this service").
-- The user explicitly asks to skip a gate or bypass a test — surface the request explicitly and explain what quality risk it creates.
+- A gate fails and the fix is ambiguous (e.g., "the output doesn't match, but
+  I'm not sure if the code or docs are wrong").
+- A gate fails due to missing information (e.g., "I don't have the API key for
+  this service").
+- The user explicitly asks to skip a gate or bypass a test — surface the request
+  explicitly and explain what quality risk it creates.
 
 ---
 
@@ -386,7 +352,8 @@ this one lab 300 lines," "skip testing the exercise, we're on a deadline"):
 ## Maintaining Difficulty Level Consistency
 
 Labs are part of a catalog. If one Beginner lab explains every line and another
-skips explanations, the consistency promise breaks. When reviewing or editing:
+skips explanations, the consistency promise breaks. When reviewing or editing
+(see `GUIDELINES.md` for the difficulty-level details):
 
 - **Check against peer labs.** Before publishing, skim one or two other labs at
   the same difficulty level. Does the explanation density match? Does the code
@@ -407,14 +374,14 @@ decision, rather than an agent's unstated judgment call.
 
 ## Including Mermaid Diagrams
 
-**Default to including a Mermaid diagram.** When a lab's Section 7 (Underlying Concepts) involves a flow, pipeline, architecture, workflow, relationship, or decision tree, add a Mermaid diagram — don't wait for the user to ask.
-
-- **Scan Section 7 as you draft it.** If it describes how pieces connect, a sequence of steps, or any relationship, plan a diagram to go with it.
-- **Include by default, skip deliberately.** Add at least one diagram whenever the concept is visual. Only omit it if the concept is trivial enough for a one-sentence explanation.
-- **Test the diagram.** Render it in markdown to confirm it displays correctly before publishing.
-- **Pair diagram with prose.** Keep the prose explanation first and let the diagram supplement it (not replace it).
-
-Beginner labs especially benefit from a visual pipeline or architecture diagram — if in doubt, include one.
+**Default to including a Mermaid diagram** when Section 7 (Underlying Concepts)
+involves any flow, pipeline, architecture, workflow, relationship, or decision
+tree — don't wait for the user to ask. The rules are in `CONSTITUTION.md`
+(Section 5) and the worked examples/checklist are in `GUIDELINES.md`. Key points:
+- **Scan Section 7 as you draft it** and plan a diagram whenever the concept is visual.
+- **Skip deliberately** only when a one-sentence explanation suffices.
+- **Test the diagram** in markdown before publishing, and **pair it with prose**.
+- Beginner labs especially benefit from a visual pipeline — if in doubt, include one.
 
 ## Amending the Constitution
 
