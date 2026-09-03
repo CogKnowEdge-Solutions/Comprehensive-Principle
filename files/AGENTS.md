@@ -1,11 +1,5 @@
 # AGENTS.md — Agent Instructions for the Labs Project
 
-This file tells an AI coding agent (Claude Code, or any agent working in this
-repo) **how to act** on the rules in `CONSTITUTION.md`. The constitution is the
-source of truth for *what* is required; this file is the operating procedure for
-*how* an agent satisfies it. If the two ever conflict, `CONSTITUTION.md` wins —
-update this file to match it, not the other way around.
-
 ## Authority and Boundaries
 
 - Treat every MUST/MUST NOT in `CONSTITUTION.md` as a hard constraint, not a
@@ -36,14 +30,12 @@ update this file to match it, not the other way around.
    limits, explanation density, code style, and library usage. If uncertain,
    ask the user or propose what you think and let them correct you.
    
-2. **Confirm scope before writing code.** Given the difficulty level, estimate
-   whether the build fits within the line ceiling:
+2. **Confirm scope before writing code.** Line limits are a **reference, not a strict cap** — use them to estimate scope and calibrate explanation density, not to truncate or pad a notebook. If the build genuinely needs more lines, it may exceed the limit (per CQ-1). Given the difficulty level, estimate
+   whether the build fits within the reference line range:
    - Beginner: ≤110 lines
    - Intermediate: ≤150 lines
    - Advanced: ≤180 lines
-   
-   If it clearly won't fit, propose a split into a numbered series (`Lab 2a`,
-   `Lab 2b`, ...) *before* writing code, not after hitting the limit.
+   If the content naturally divides, prefer splitting into a numbered series (`Lab 2a`, `Lab 2b`...) — but this is a scoping preference, not a hard enforcement.
 
 3. **Start from the 12-section structure in Article I**, not a blank file, so no section is skipped or reordered.
 
@@ -329,7 +321,7 @@ if __name__ == "__main__":
 ## Workflow: Reviewing or Editing an Existing Lab
 
 1. Before claiming a lab still works, re-run all five gates — dependency drift is common and silent.
-2. If an edit changes line count, re-check it against Article II's ceiling for the difficulty level.
+2. If an edit changes line count, re-check it against Article II's reference line ceiling for the difficulty level — the limit is a reference, not a strict cap, so flag significant overages but don't force truncation.
 3. If an edit changes any of Sections 1–12, re-check Article III (UX-3) consistency against at least one other published lab at the same difficulty level.
 4. If you edit the assignment file, re-attempt its exercises and verify the answer key still matches the (possibly changed) lab.
 5. Re-run all five gates after any non-trivial edit, not just the tests you think changed.
@@ -410,7 +402,7 @@ skips explanations, the consistency promise breaks. When reviewing or editing:
 
 When explaining a decision (line splits, comment density, why a lab was flagged),
 cite the Article by number — e.g., "split into 2a/2b per Article II's line
-ceiling." This keeps the constitution the visible authority behind every
+reference." This keeps the constitution the visible authority behind every
 decision, rather than an agent's unstated judgment call.
 
 ## Including Mermaid Diagrams

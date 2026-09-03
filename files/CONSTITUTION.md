@@ -10,6 +10,7 @@
 `v2.2 — every notebook must begin with a single `!pip install` cell (CQ-10) installing all required modules so learners can install dependencies directly`
 `v3.0 — every lab now ships a required assignment file (`lab-<slug>-assignment.md`) with knowledge-check exercises and an answer key (UX-7)`
 `v4.0 — Testing Standards removed from this document; the five-gate validation workflow now lives in AGENTS.md, with TEST.md as the companion testing guide`
+`v5.0 — CQ-1 line limits are now a reference/scoping guideline, not a strict compliance cap; learners may exceed where scope genuinely requires it, per the change agreed in AGENTS.md`
 
 ---
 
@@ -48,8 +49,8 @@ No lab skips a section. If a section genuinely doesn't apply (e.g., no prerequis
 
 ### Universal Code Quality Rules (Apply to All Difficulty Levels)
 
-**CQ-1. Hard line limit scales by difficulty level.**
-This is a teaching constraint, not a style preference — beyond the ceiling for your difficulty level, a learner loses the plot. If the real build needs more, split it into a numbered lab series (`Lab 2a`, `Lab 2b`...) rather than stretching one notebook past the limit. Line limits by difficulty: Beginner 80–110, Intermediate 110–150, Advanced 150–180 (see below).
+**CQ-1. Line limit scales by difficulty level (reference, not a hard cap).**
+This is a teaching constraint, not a style preference — beyond the reference ceiling for your difficulty level, a learner tends to lose the plot. The line limits are a **reference for scoping and calibration, not a strict compliance threshold**: if the real build genuinely needs more lines, it may exceed the ceiling. Prefer splitting into a numbered lab series (`Lab 2a`, `Lab 2b`...) when the content naturally divides, but do not stretch or truncate a notebook just to hit the limit. Reference line limits by difficulty: Beginner 80–110, Intermediate 110–150, Advanced 150–180 (see below).
 
 **CQ-2. Every code block is explained, not just labeled.**
 Each block in Section 10 is preceded or followed by markdown explaining *what it does and why it's there*. Explanation depth varies by difficulty level (see below). Assume the learner may not know the library, not just the concept.
@@ -88,7 +89,7 @@ The rules above apply to all labs. These standards scale the *depth* and *verbos
 
 **Target:** Learner is new to the core concept, may lack background in the subject domain, needs hand-holding.
 
-**Line limit:** 80–110 lines (tighter than intermediate/advanced).
+**Line limit (reference, not hard cap):** 80–110 lines (tighter than intermediate/advanced).
 
 **Explanation style:**
 - Every code block preceded by a prose explanation of what you're about to see.
@@ -129,7 +130,7 @@ for review, sentiment in zip(reviews, sentiments):
 
 **Target:** Learner knows the basics of the subject, is building real-world skills, can connect concepts across multiple pieces.
 
-**Line limit:** 110–150 lines.
+**Line limit (reference, not hard cap):** 110–150 lines.
 
 **Explanation style:**
 - Code blocks preceded by a markdown paragraph explaining the approach, not the syntax.
@@ -167,7 +168,7 @@ for chunk, embedding in zip(chunked_docs, embeddings):
 
 **Target:** Learner is experienced in the domain, interested in production patterns and nuance, can handle complexity and wants depth.
 
-**Line limit:** 150–180 lines (can approach ceiling).
+**Line limit (reference, not hard cap):** 150–180 lines (can approach ceiling).
 
 **Explanation style:**
 - Code blocks preceded by a technical explanation of design decisions — why this approach, what are the tradeoffs, what would you do differently at scale?
@@ -417,7 +418,7 @@ Every lab must clear this list. Test-gate items below are executed per the five-
 
 - [ ] Follows 12-section template (Section 1, headings intact)
 - [ ] File format: `.ipynb` or `.py` + `.md` file (matching slug name)
-- [ ] Code respects line limit: Beginner ≤110, Intermediate ≤150, Advanced ≤180
+- [ ] Code near line reference (not a hard cap): Beginner ≤110, Intermediate ≤150, Advanced ≤180 — exceed only where scope genuinely requires it
 - [ ] Every code block explained; non-obvious lines commented
 - [ ] Helper functions minimized — inline code preferred
 - [ ] Runs clean in fresh environment (Gate 1 passes)

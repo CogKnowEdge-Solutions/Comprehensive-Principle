@@ -81,7 +81,7 @@ If you're using Claude Code to build or maintain labs with this governance:
    ```bash
    claude
    ```
-   Claude Code will then follow the five-gate testing workflow, enforce line ceilings and section structure, and manage the full lab lifecycle.
+   Claude Code will then follow the five-gate testing workflow, reference line ceilings during scoping, enforce section structure, and manage the full lab lifecycle.
 
 See `files/CLAUDE.md` for detailed workflows, tips, and guidance specific to Claude Code.
 

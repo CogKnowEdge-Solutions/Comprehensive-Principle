@@ -68,7 +68,7 @@ claude
 
 Claude Code will automatically:
 - Read `AGENTS.md` and understand the required lab-building workflow
-- Respect the rules in `CONSTITUTION.md` (line limits, section structure, difficulty levels)
+- Respect the rules in `CONSTITUTION.md` (line references, section structure, difficulty levels)
 - Apply the testing framework from `TEST.md`
 - Reference `GUIDELINES.md` for style and best practices
 
@@ -78,12 +78,12 @@ Claude Code will automatically:
 
 When you ask Claude Code to create, edit, or test a lab, it follows the workflows defined in `AGENTS.md`:
 
-- **Creating a lab:** Validates difficulty level, confirms scope against line ceilings, structures the 12-section format, applies the five validation gates
+- **Creating a lab:** Validates difficulty level, confirms scope against line references, structures the 12-section format, applies the five validation gates
 - **Testing a lab:** Runs Gate 1 (Fresh Environment) through Gate 5 (Reviewer Walkthrough), captures test results to `.xlsx`, reports pass/fail status
 - **Editing a lab:** Re-runs gates after changes, checks against peer labs for consistency, maintains difficulty-level alignment
 
 You don't need to repeat instructions — just say "create a Beginner lab on X" and Claude Code will automatically:
-- Decide whether the scope fits the line ceiling (≤110 lines for Beginner)
+- Decide whether the scope fits the line reference (≤110 lines for Beginner; reference, not a hard cap)
 - Build from the 12-section template
 - Run all five gates before declaring it ready
 
@@ -92,7 +92,7 @@ You don't need to repeat instructions — just say "create a Beginner lab on X" 
 `CONSTITUTION.md` is the source of truth. It defines:
 
 - **Article I:** The 12-section lab structure (required order and content)
-- **Article II:** Line ceilings by difficulty (Beginner ≤110, Intermediate ≤150, Advanced ≤180)
+- **Article II:** Line references by difficulty (Beginner ≤110, Intermediate ≤150, Advanced ≤180) — reference for scoping, not a strict cap (CQ-1)
 - **Article III:** Code quality rules (CQ-1…CQ-10) and UX requirements
 - **Article IV:** Difficulty levels and what they mean
 - **Article V:** The assignment file format (knowledge-check exercises with answer keys)
@@ -155,7 +155,7 @@ Claude:  ✓ Creates a fresh environment per Section 9
 ```
 You:     "Update lab-nlp.ipynb: clarify the tokenization section."
 Claude:  ✓ Makes the edit
-         ✓ Checks line count against Article II
+         ✓ Checks line count against Article II's reference
          ✓ Re-runs gates affected by the change
          ✓ Reports what needed re-testing and why
 ```
@@ -164,11 +164,11 @@ Claude:  ✓ Makes the edit
 
 ```
 You:     "Make this lab 200 lines — it's important."
-Claude:  ✓ Names the Article (Article II: line ceiling)
-         ✓ Offers real options:
-           - Split into a numbered series (Lab 2a, 2b, ...)
-           - Amend CONSTITUTION.md (with rationale and review process)
-           - Flag it as non-compliant until amended
+Claude:  ✓ Notes the reference line count (Article II: line reference)
+         ✓ Offers options:
+           - Split into a numbered series (Lab 2a, 2b, ...) if content divides
+           - Proceed with the longer lab (line limits are a reference, not a hard cap — CQ-1) and flag the overage for review
+           - Amend CONSTITUTION.md if the limit itself should change
          ✓ Lets you decide
 ```
 
@@ -193,7 +193,7 @@ git commit -m "Add Comprehensive Principles governance files v0.1.0"
 
 ### Tip 4 — Reference Articles by number
 
-When Claude Code explains a decision (e.g., "split into 2a/2b"), it cites the Article (e.g., "per Article II's line ceiling"). Use this same language in code reviews and pull requests — it keeps the constitution visible as the authority.
+When Claude Code explains a decision (e.g., "split into 2a/2b"), it cites the Article (e.g., "per Article II's line reference"). Use this same language in code reviews and pull requests — it keeps the constitution visible as the authority.
 
 ### Tip 5 — Save test results to `.xlsx`
 
@@ -205,7 +205,7 @@ Before publishing, ask Claude Code to compare your lab's explanation density, co
 
 ## Governance Updates
 
-If you want to amend `CONSTITUTION.md` (e.g., increase a line ceiling, change the section structure), follow the process documented in `CONSTITUTION.md`'s Governance section:
+If you want to amend `CONSTITUTION.md` (e.g., change a line reference, change the section structure), follow the process documented in `CONSTITUTION.md`'s Governance section:
 
 1. Propose the change and rationale
 2. Review against existing labs for impact
@@ -219,12 +219,12 @@ Claude Code will refuse a governance change that isn't properly proposed and wil
 
 ### "Claude Code won't create a lab that fits my scope"
 
-Check Article II's line ceiling for your difficulty level:
+Check Article II's line reference for your difficulty level:
 - Beginner: ≤110 lines
 - Intermediate: ≤150 lines
 - Advanced: ≤180 lines
 
-If your concept is too large, ask Claude Code to split it into a numbered series (`Lab 2a`, `Lab 2b`, etc.) before writing code.
+These are references for scoping, not hard caps (CQ-1). If your concept is larger, ask Claude Code to split it into a numbered series (`Lab 2a`, `Lab 2b`, etc.) — or proceed with a longer lab if the scope genuinely requires it.
 
 ### "A test gate is failing"
 

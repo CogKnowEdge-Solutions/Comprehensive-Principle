@@ -7,7 +7,7 @@ constitution wins; flag it so this doc can be fixed.
 
 ## Quick Start: Building a Lab in 6 Steps
 
-1. **Scope it before you write code.** Choose notebook format (`.ipynb` for exploratory/visual, `.py` for production-like code). Difficulty level sets line limit: Beginner ≤110, Intermediate ≤150, Advanced ≤180. Plan a series split if you'll exceed it.
+1. **Scope it before you write code.** Choose notebook format (`.ipynb` for exploratory/visual, `.py` for production-like code). Difficulty level sets a line reference: Beginner ≤110, Intermediate ≤150, Advanced ≤180. These are references for scoping, not hard caps (CQ-1) — exceed only where scope genuinely requires it. Plan a series split if the content naturally divides, but don't truncate a notebook just to hit the number.
 
 2. **Draft Sections 1–9 first.** Title, problem, input/processing/output, tech stack, concepts, prerequisites, setup. Do this in markdown before coding.
 
@@ -77,7 +77,7 @@ Advanced lab? This shapes everything else.
   semantic search, focuses on production patterns).
 
 **Once you decide, use it:**
-- **Line limit:** Beginner ≤110, Intermediate ≤150, Advanced ≤180
+- **Line reference:** Beginner ≤110, Intermediate ≤150, Advanced ≤180 (reference, not a hard cap)
 - **Explanation density:** Beginner more prose/comments; Intermediate balanced; Advanced concise
 - **Code style:** Beginner avoids fancy Python; Intermediate clear idioms; Advanced shows sophisticated patterns if instructive
 - **Library usage:** Beginner high-level abstractions; Intermediate mix; Advanced custom implementations where instructive
@@ -443,7 +443,7 @@ Before you write any code:
 
 ```
 [ ] Difficulty level chosen (Beginner/Intermediate/Advanced)
-[ ] Scope estimated — will it fit the line limit?
+[ ] Scope estimated — near the line reference? (reference, not a hard cap)
 [ ] If too big, split into a series (Lab 2a, Lab 2b, etc.)
 [ ] Using the 12-section structure from the constitution
 [ ] Sections 1–9 drafted (title through setup)
@@ -496,7 +496,7 @@ STRUCTURE & FILES
   [ ] Code file: .ipynb or .py (match `lab-<topic-slug>` slug)
   [ ] Assignment file `lab-<topic-slug>-assignment.md` present with 5–10 exercises + answer key
   [ ] Every assignment exercise attempted and answer key verified
-  [ ] Code ≤ limit: Beginner ≤110, Intermediate ≤150, Advanced ≤180
+  [ ] Code near line reference: Beginner ≤110, Intermediate ≤150, Advanced ≤180 (reference, not a hard cap)
   [ ] Every block explained; non-obvious lines commented
   [ ] Helper functions minimized; inline code preferred
 
