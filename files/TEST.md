@@ -1,12 +1,12 @@
 # Comprehensive Testing Guide
 
-This guide provides a complete framework for testing any lab, pipeline, API, or application—following Test-Driven Development (TDD) principles and practical testing methodologies.
+This guide provides a complete framework for testing any lesson, pipeline, API, or application—following Test-Driven Development (TDD) principles and practical testing methodologies.
 
 ---
 
 ## Mandatory Test File Format
 
-**MUST — Test cases are written as pytest `.py` files.** All test cases for any lab, pipeline, API, or application MUST be authored in a standalone Python test file (e.g., `test_agent.py`) using the pytest framework, and MUST be run with the `pytest` command.
+**MUST — Test cases are written as pytest `.py` files.** All test cases for any lesson, pipeline, API, or application MUST be authored in a standalone Python test file (e.g., `test_agent.py`) using the pytest framework, and MUST be run with the `pytest` command.
 
 **MUST NOT — Test cases are never written or executed in notebooks.** Test cases MUST NOT be authored, stored, or executed inside Jupyter notebooks (`.ipynb`) — not as notebook cells, not as an `.ipynb`-based test runner, and not as a `!pytest` invocation in a notebook cell. A notebook may *demonstrate* interactive testing for teaching, but the authoritative test cases for the project always live in `.py` files.
 
@@ -29,7 +29,7 @@ This guide provides a complete framework for testing any lab, pipeline, API, or 
 
 ### Overview
 
-This framework applies to testing any dev-built lab, pipeline, API, or application—ML pipelines, web apps, notebooks, backend services, etc. Not every category applies to every project; select the ones relevant to what you're testing.
+This framework applies to testing any dev-built lesson, pipeline, API, or application—ML pipelines, web apps, notebooks, backend services, etc. Not every category applies to every project; select the ones relevant to what you're testing.
 
 **Key Principle**: For any code, ask: *"What does this code assume that isn't actually guaranteed?"* Each unverified assumption becomes one test case. Aim for 10-15 test cases that surface real risk, rather than padding the count.
 
