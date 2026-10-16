@@ -5,19 +5,25 @@ concrete steps, examples, and things to watch out for while you're actually
 writing a lesson. If something here ever seems to contradict the constitution, the
 constitution wins; flag it so this doc can be fixed.
 
-## Quick Start: Building a Lesson in 6 Steps
+Terms: **"Article N"** means a part of `CONSTITUTION.md`; **"Section N"** means
+one of the 11 sections of a lesson's `.md` file; the **code file** is the
+lesson's `.ipynb` notebook or `.py` script.
 
-1. **Scope it before you write code.** Choose notebook format (`.ipynb` for exploratory/visual, `.py` for production-like code). Difficulty level sets a line reference: Beginner ≤110, Intermediate ≤150, Advanced ≤180. These are references for scoping, not hard caps (CQ-1) — exceed only where scope genuinely requires it. Plan a series split if the content naturally divides, but don't truncate a notebook just to hit the number.
+## Quick Start: Building a Lesson in 7 Steps
 
-2. **Draft Sections 1–9 first.** Explanation of topic, problem, input/processing/output, tech stack, concepts, and (if needed) prerequisites and setup. Do this in markdown before coding.
+1. **Scope it before you write code.** Choose notebook format (`.ipynb` for exploratory/visual, `.py` for production-like code). The line reference is about 150 lines of raw code — comments, docstrings, blank lines, and the `!pip` line don't count. It's a reference for scoping, not a hard cap (CQ-1) — exceed only where scope genuinely requires it. Plan a series split if the content naturally divides, but don't truncate a lesson just to hit the number.
 
-3. **Build code one step per cell/section.** Load → transform → embed → store → query. Each step is separate, explained as you go.
+2. **Draft Sections 1–6 (and 8–9 if needed) first,** starting from the `.md` skeleton in Article I: explanation of topic, problem, input/processing/output, tech stack, and any prerequisites and setup. Do this in markdown before coding. Sections 7 and 11 come after the code (step 4).
 
-4. **Write the assignment file (`lesson-<slug>-assignment.md`)** with exercises that test the lesson's key concepts, plus an answer key. Attempt every exercise yourself before shipping.
+3. **Build code one step per cell.** Load → transform → embed → store → query. Each code cell is followed by a markdown cell explaining it — and the notebook holds nothing else (see "Notebook Layout" below). Copy each block and its explanation into Section 10 as you go.
 
-5. **Restart & Run All in clean environment.** Fresh venv/container built from your Section 9 instructions (or the first `!pip install` cell) only.
+4. **Write Sections 7 and 11 once the code works.** It's easier to explain a concept once you've implemented it, and What We Learnt must tie back to Section 7.
 
-6. **Walk the Pre-Publish Checklist**, item by item, before shipping.
+5. **Write the assignment file (`lesson-<slug>-assignment.md`)** with exercises that test the lesson's key concepts, plus an answer key. Attempt every exercise yourself before shipping.
+
+6. **Restart & Run All in clean environment.** Fresh venv/container built from your Section 9 instructions (or the first `!pip install` cell) only.
+
+7. **Walk the Pre-Publish Checklist** (Article VI), item by item, before shipping.
 
 ## Writing Voice: Simple, Active, Human
 
@@ -45,6 +51,66 @@ and the assignment — should sound like a friendly teacher, not a textbook
 **Quick self-check:** read a paragraph out loud. If it sounds like something
 you'd never say to a person, rewrite it.
 
+### Spell Out Every Acronym on First Use
+
+The first time an acronym shows up in the lesson, write it out in full with the
+acronym in brackets. After that, the short form is fine.
+
+- **Format:** full form first, acronym in brackets — "Large Language Model
+  (LLM)", "Application Programming Interface (API)".
+- **Wherever it first appears.** That might be the title, Section 1, a code
+  comment, or a diagram label. For a diagram, spell it out in the sentence just
+  before it.
+- **Even the "obvious" ones.** API, CSV, GPU, and JSON are obvious to you, not
+  necessarily to the learner.
+- **Add a few plain words when the full form doesn't help.** "BM25 (Best Match
+  25, a classic keyword-ranking method)" tells the learner more than the
+  expansion alone.
+- **Once per file.** Learners may open the `.md`, the code file, or the
+  assignment on its own, so spell out each acronym again at its first use in
+  each of the three files.
+
+| Instead of this | Write this |
+|-----------------|------------|
+| We'll build a RAG pipeline. | We'll build a Retrieval-Augmented Generation (RAG) pipeline. |
+| Send the prompt to the LLM. | Send the prompt to the Large Language Model (LLM). |
+| Save the results as a CSV. | Save the results as a Comma-Separated Values (CSV) file. |
+
+**Quick self-check:** search the lesson for each acronym and check that its
+first appearance is spelled out in full.
+
+## Real-World Examples for Hard Concepts
+
+This is a UX-2 rule. Every complex or hard concept gets a **short, real-world example** — wherever it
+shows up (Explanation of Topic, Underlying Concepts, a complex code step, or
+the assignment). A good example lets the learner picture the idea before they
+read the technical version.
+
+- **Keep it short.** One or two sentences. If the example needs its own
+  explanation, it's too long.
+- **Make it real-world.** Use things people do or see in daily life — sorting
+  laundry, a shopping list, a library shelf, a map, a recipe, a phone's contact
+  list, a traffic light.
+- **Keep it universal.** The example must make sense to anyone, anywhere. Don't
+  tie it to a particular community, nationality, religion, region, or culture:
+  - No country-specific sports, festivals, holidays, foods, or traditions.
+  - No local currencies, brands, celebrities, politicians, or TV shows.
+  - No jokes or references that only one group would get.
+- **Match the idea closely.** The example should mirror how the concept actually
+  works, not just sound similar. Say where it stops matching if that could
+  mislead.
+
+| Concept | Too long / not universal | Short and universal |
+|---------|--------------------------|---------------------|
+| Embeddings | A long story about a specific national sport's player rankings | Like GPS coordinates for meaning: similar ideas sit close together on the map. |
+| Caching | An example built around a particular festival's food preparation | Like keeping your keys by the door so you don't search the house every time. |
+| Chunking | A region-specific newspaper layout | Like cutting a long recipe into steps so you can follow one at a time. |
+| Overfitting | A reference to one country's exam system | Like memorizing last year's test answers — great on that test, lost on a new one. |
+| Queue | A local train or bank custom | Like a line at a ticket counter: first in, first served. |
+
+**Quick self-check:** would a learner on the other side of the world get this
+example without looking anything up? If not, swap it for a more universal one.
+
 ## Writing Each Section Well
 
 - **Explanation of Topic:** Explain the topic from the fundamentals, for
@@ -54,10 +120,10 @@ you'd never say to a person, rewrite it.
     one-line definition for any term you can't avoid.
   - **Use bullet points:** one idea per bullet, after at most 1–2 framing
     sentences. No dense paragraphs.
-  - **Give at least one example:** an everyday analogy or a concrete
-    before/after makes the idea tangible.
-  - **Add a simple diagram:** one small Mermaid diagram (7 blocks max)
-    that shows the core idea at a glance.
+  - **Give at least one example:** a short, real-world, universal example
+    makes the idea tangible (see "Real-World Examples for Hard Concepts").
+  - **Always add a simple diagram:** one small Mermaid diagram (7 blocks max)
+    that shows the core idea at a glance — even when the topic seems simple.
 
   Example (topic: vector embeddings):
 
@@ -86,10 +152,11 @@ you'd never say to a person, rewrite it.
   search 10,000 past tickets by meaning, not keyword") rather than an abstract
   capability ("demonstrates semantic search"). Learners retain concepts better
   when they're anchored to a use case.
-- **Underlying Concepts (suggested 2 pages):** Write it last, after the lesson is built —
-  it's easier to explain a concept once you've implemented it. Use one concrete
-  analogy if the concept is abstract (e.g., "a vector embedding is like a GPS
-  coordinate for meaning"). Cut anything a learner doesn't need to understand
+- **Underlying Concepts (suggested 2 pages):** Write it after the code is built —
+  it's easier to explain a concept once you've implemented it. Give every hard
+  concept a short, real-world, universal example (e.g., "a vector embedding is
+  like a GPS coordinate for meaning") — see "Real-World Examples for Hard
+  Concepts". Cut anything a learner doesn't need to understand
   *this* lesson's code.
 - **Tech Stack:** List exact versions, not just names (`langchain==0.2.1`, not
   "LangChain"). If you're not sure why a version matters, it's because an
@@ -100,51 +167,97 @@ you'd never say to a person, rewrite it.
 Every lesson ships with `lesson-<topic-slug>-assignment.md` — a standalone set of exercises that lets learners test what they just learned, without re-running the lesson.
 
 **What goes in it:**
-- **5–10 exercises**, scaled to difficulty (Beginner: 5–7, Intermediate: 7–9, Advanced: 9–10).
+- **5–10 exercises**, scaled to the lesson's scope (more concepts → more exercises).
 - **A mix of question types:** concept questions ("What does an embedding capture?"), short code tasks ("Write a function that chunks text into ~500-token pieces"), and applied tasks ("Given the RAG pipeline, add a reranker step").
 - **An answer key at the end** with brief explanations, not just answers — learners self-check, so the *reasoning* matters.
 - **References to the lesson, not repeats.** Point exercises back at the relevant section ("see Section 7") instead of re-explaining the concept.
+
+**Skeleton** — copy it for every assignment file:
+
+```markdown
+# <Lesson Title> — Assignment
+
+## Exercises
+
+### Exercise 1 — <short name>
+<The question or task, in plain words.>
+
+### Exercise 2 — <short name>
+...
+
+## Answer Key
+
+### Exercise 1
+**Answer:** <the answer, or the working code>
+
+**Why:** <one to three sentences explaining the reasoning>
+
+### Exercise 2
+...
+```
 
 **Rules:**
 - Exercises must be **doable from the lesson alone** — no outside reading required.
 - Attempt **every exercise yourself** before publishing and verify the answer key (this is Gate 4).
 - Learners can attempt the assignment **without re-running the notebook**; any code-based exercise should run in a scratch file.
 
-## Choosing and Signaling Difficulty Level
+## Scoping a Lesson and Signaling Time
 
-Before you write a line of code, decide: is this a Beginner, Intermediate, or
-Advanced lesson? This shapes everything else.
+Before you write a line of code, get clear on who the lesson is for and what it
+covers. This shapes everything else.
 
 **Ask yourself:**
 - Is this the *first* time a learner will see this concept, or are they building
-  on existing knowledge?
-- How much domain background do they need to understand the code?
-- Is the code mostly high-level library calls (Beginner) or a mix of custom +
-  library (Intermediate) or mostly custom + design decisions (Advanced)?
-- What's the realistic learner goal — understanding, skill-building, or mastery?
+  on existing knowledge? Either way, explain every term on first use.
+- How much background does a learner need to follow the code? List it in the
+  header line and, if useful, in Section 8 (Prerequisites).
+- Does the code lean on high-level library calls, custom logic, or design
+  decisions? Explain each at the level the Code Quality Standards set.
+- What's the realistic learner goal — understanding, building, or optimizing?
+  Make the narrative serve that goal.
 
-**Examples of the decision:**
-- "What are embeddings?" → Beginner (first exposure, heavy explanation).
-- "Building semantic search" → Intermediate (assumes you know what embeddings
-  are, focuses on the build).
-- "Optimizing embedding retrieval at scale" → Advanced (assumes you've built
-  semantic search, focuses on production patterns).
-
-**Once you decide, use it:**
-- **Line reference:** Beginner ≤110, Intermediate ≤150, Advanced ≤180 (reference, not a hard cap)
-- **Explanation density:** Beginner more prose/comments; Intermediate balanced; Advanced concise
-- **Code style:** Beginner avoids fancy Python; Intermediate clear idioms; Advanced shows sophisticated patterns if instructive
-- **Library usage:** Beginner high-level abstractions; Intermediate mix; Advanced custom implementations where instructive
+**Then apply the shared standards:**
+- **Line reference:** about 150 lines of raw code (reference, not a hard cap — CQ-1)
+- **Explanation density:** a prose explanation after every block, a plain
+  comment on every logical block, extra comments on non-obvious lines
+- **Code style:** clear idioms only when they serve the concept, explained when used
+- **Library usage:** high-level abstractions by default; custom logic where it
+  shows the concept or where components can be swapped
 - **Helper functions:** Minimize. Write inline unless called multiple times or teaching a separate concept
 - **File format:** `.ipynb` for exploratory lessons; `.py` for production-like code lessons
 
-**Then label it:**
+**Then label it** — the header line goes directly under the title:
 ```
-Difficulty: Beginner | ~30 min | No prerequisites
+~30 min · Needs: basic Python
 ```
-Be honest about your target level.
+Be honest about the time and what a learner needs to know first. If the lesson
+needs an account, API key, paid service, more than a laptop CPU, or an earlier
+part of its series, Section 8 (Prerequisites) is required too.
 
 ## Code Style, With Examples
+
+### Notebook Layout: Code, Then Its Explanation
+
+The notebook (or `.py` script) holds **only code and the explanation of that
+code**. Everything else — title, header line, Sections 1–9, Section 11 — lives
+only in the `.md` file.
+
+```
+[code]      !pip install ... (pinned versions)
+[markdown]  What this cell installs, in one sentence
+[code]      Step 1 — e.g., load the data
+[markdown]  What step 1 did and why
+[code]      Step 2 — e.g., split into chunks (a complex step)
+[markdown]  Explainer: Input / What happens / Output / Why + small diagram
+...
+```
+
+- **Explanation always comes after the code**, never before it.
+- **No other markdown cells** — no title cell, no introduction, no theory, no recap.
+- **`.py` scripts:** the same pattern, with each explanation as a comment block
+  right after the code block.
+- **Section 10 mirrors the notebook:** the same code blocks, each followed by the
+  same explanation, in the same order.
 
 ### Comment Every Logical Block
 
@@ -195,8 +308,8 @@ embeddings = embed(chunks)
 store.add(embeddings)
 ```
 
-**Better (one step per cell, each with its own explanation above it):**
-Split the four lines above into four cells, each preceded by a sentence
+**Better (one step per cell, each followed by its own explanation):**
+Split the four lines above into four cells, each followed by a markdown cell
 explaining that specific step. If a learner wants to inspect `chunks` before
 embedding, they should be able to run to that point and stop.
 
@@ -212,7 +325,7 @@ needs a dedicated explainer, and a diagram if required.
 - The data changes shape (text → chunks → vectors → scores).
 - Several components interact (model, database, API).
 
-**Explainer format** — bullet points right before the code cell:
+**Explainer format** — bullet points in the markdown cell right after the code:
 - **Input:** what goes in, with its shape or type.
 - **What happens:** the operations in order, in plain words.
 - **Output:** what comes out, with its shape or type.
@@ -221,24 +334,45 @@ needs a dedicated explainer, and a diagram if required.
 **Add a diagram if** the step has a flow, a branch, or data changing shape.
 Keep it to 7 blocks or fewer and about this step only.
 
-**Example (retrieval step):**
+**Example (retrieval step)** — first the code cell:
+
+```python
+# Turn the question into a vector, using the same model we used for the chunks.
+question_vector = np.array(
+    client.embeddings.create(model="text-embedding-3-small", input=[question]).data[0].embedding
+)
+
+# Score every chunk by how closely its vector points the same way as the question's (cosine similarity).
+chunk_matrix = np.array(chunk_vectors)
+scores = chunk_matrix @ question_vector / (
+    np.linalg.norm(chunk_matrix, axis=1) * np.linalg.norm(question_vector)
+)
+
+# Keep the 3 highest-scoring chunks, best first.
+top_chunks = [chunks[i] for i in np.argsort(scores)[::-1][:3]]
+```
+
+Then the markdown cell right after it:
 
 ````markdown
-### Step 5 — Find the most relevant chunks
-
-- **Input:** the user's question (a string) and the stored chunk vectors.
+- **Input:** your question (a string) and the stored chunk vectors (one list of
+  numbers per chunk).
 - **What happens:**
   - We turn the question into a vector with the same embedding model.
-  - We compare that vector with every stored chunk vector (cosine similarity).
+  - We compare that vector with every chunk vector using cosine similarity — a
+    score from -1 to 1 for how closely two vectors point the same way.
   - We sort the chunks by score and keep the top 3.
 - **Output:** you get a list of 3 chunks, most relevant first.
 - **Why:** the language model can only read a few chunks, so we hand it the
   ones most likely to contain the answer.
 
+Think of it like asking a librarian: they don't read every book, they pull the
+three shelves closest to your topic.
+
 ```mermaid
 graph LR
     Q[Question] --> E[Embed question]
-    E --> C[Compare with stored vectors]
+    E --> C[Compare with chunk vectors]
     C --> S[Sort by score]
     S --> T[Top 3 chunks]
 ```
@@ -254,10 +388,10 @@ interrupt the learning flow.
 **Default: inline code.** Even if it's 5 lines, write it out:
 
 ```python
-# Split each document into chunks
+# Split each document into chunks of about 500 characters.
 chunked_docs = []
 for doc in documents:
-    doc_chunks = doc.split_by_tokens(max_tokens=512)
+    doc_chunks = splitter.split_text(doc)
     chunked_docs.extend(doc_chunks)
 ```
 
@@ -269,7 +403,7 @@ chunked_docs = chunk_documents(documents)  # What does this do? Go read the func
 
 **Use a helper function only if:**
 - It's called **multiple times** in the lesson (e.g., `process_text()` used in three different cells).
-- OR it teaches a **separate concept** worth isolating (e.g., a custom scoring function that's the whole point of an advanced lesson).
+- OR it teaches a **separate concept** worth isolating (e.g., a custom scoring function that's the whole point of the lesson).
 
 **For helper functions you do define:**
 - Define it early (top cells), with a clear docstring.
@@ -285,16 +419,16 @@ chunked_docs = chunk_documents(documents)  # What does this do? Go read the func
 ```
 
 - **One line, all modules.** Don't scatter installs through later cells — running the first cell leaves everything ready.
-- **Pin versions** exactly as in Section 6 / Section 9 so the notebook and the setup instructions never drift.
+- **Pin versions** exactly as in Section 6 (and Section 9 if present) so the notebook and the setup instructions never drift.
 - **`.py` script lessons:** a script can't run `!pip` — keep installs in Section 9 via `requirements.txt` + `pip install -r requirements.txt`, and note that in the checklist.
-- **Explain the cell.** One sentence right under it, e.g., "This installs the exact versions of every library used in this lesson."
+- **Explain the cell.** One sentence in the markdown cell right after it, e.g., "This installs the exact versions of every library used in this lesson."
 - **Gate 2 test includes it.** When you `Restart & Run All`, the `!pip install` cell runs first and must succeed in a fresh environment (which your Gate 1 environment is).
 
 ## Testing, in Practice
 
 The Constitution calls for five validation gates; `AGENTS.md` is the
 authoritative source for the exact gate steps (Gate 1 Fresh Environment → Gate 5
-Reviewer Walkthrough) and the `TEST.md` framework supplies the test-case design.
+Reviewer Walkthrough). Any test files follow the pytest format in `TEST.md`.
 Walk the gates in order, one at a time — don't skip a gate or test out of order;
 each depends on the previous one passing. What follows is the practical color
 and the failure modes each gate tends to trip on, not a replacement for the
@@ -307,20 +441,21 @@ Start with a truly clean slate. This is where most lessons fail silently:
   exists on your machine.
 - **Example failure and fix:**
 ```
-Author tests, runs: pip install langchain weaviate-client
-Gate 1 test runs: pip install -r requirements.txt
+Author's machine already had weaviate-client installed.
+First cell in the lesson: !pip install openai==1.35.0 langchain==0.2.5
+Gate 1 runs that cell in a fresh environment, then Gate 2 hits:
 Result: ModuleNotFoundError: No module named 'weaviate'
 
-Fix: Add weaviate-client to requirements.txt (it wasn't pinned),
-re-test Gate 1. Now it passes.
+Fix: Add weaviate-client==4.6.2 to the first cell (and to Section 6,
+and Section 9 if present), re-test Gate 1. Now it passes.
 ```
 
 ### Gate 2: Restart & Run All
 For `.ipynb`: Kernel → Restart & Clear Output, then Cell → Run All. For `.py`:
 `python script.py`. Watch it run without touching anything. **Common failures:**
 variables/imports from earlier cells missing, hardcoded paths (use relative
-paths, e.g. `Path(__file__).parent / "data/reviews.csv"`), and dependencies not
-pinned in Section 9.
+paths, e.g. `Path(__file__).parent / "data/reviews.csv"`), and dependencies missing from
+the first `!pip install` cell (or from `requirements.txt` for `.py` lessons).
 
 ### Gate 3: Output Verification
 Look at what the notebook actually printed and compare to Section 5. The usual
@@ -356,6 +491,7 @@ lesson is worse than no exercise. A learner who follows your instructions and hi
 wall blames the lesson.
 
 ### Gate 5: Reviewer Walkthrough
+An AI agent can't do this gate — it reports Gate 5 as pending and hands off.
 Have someone else (not you) do all four gates above — they read the markdown
 without running code first (catches confusing explanations), set up fresh (Gate
 1), run the notebook (Gate 2), and attempt the assignment (Gate 4).
@@ -363,29 +499,25 @@ without running code first (catches confusing explanations), set up fresh (Gate
 **What reviewers often find that authors miss:** a step that feels obvious to
 you but is unexplained; an unstated assumption ("you know what embeddings are");
 a typo in Section 9 that didn't break on your machine because you already had
-the package; an explanation too terse for the stated difficulty level. Treat
+the package; an explanation too terse for a newcomer. Treat
 reviewer feedback as data — they're showing you the gaps between what's in your
 head and what's on the page.
 
 ---
 
-## Testing at Different Difficulty Levels
+## Choosing a Reviewer
 
-**Beginner lessons:**
-- Reviewer should be someone who knows the programming language but not the domain. Can they follow the code without constantly checking library docs?
-- Ask reviewer: "Was every concept explained before it was used?" and "Did you ever feel lost?"
-
-**Intermediate lessons:**
-- Reviewer should know the domain but maybe not have built this exact thing before. Can they understand the design choices? Could they adapt this to their own project?
-- Ask reviewer: "Did the assignment exercises feel realistic?" and "Would you know what to change if you wanted to use a different model/library?"
-
-**Advanced lessons:**
-- Reviewer should be experienced in the domain. Are the tradeoffs visible? Could they extend this to production?
-- Ask reviewer: "Are the limitations clear?" and "Could you take this and scale it?"
+- **Pick someone outside your head.** Ideally they know the programming language
+  but haven't built this exact thing before. Can they follow the code without
+  checking library docs? Could they adapt it to their own project?
+- **Ask them:**
+  - "Was every concept explained before it was used?" and "Did you ever feel lost?"
+  - "Did the assignment exercises feel realistic?"
+  - "Would you know what to change to use a different model or library?"
+  - "Are the tradeoffs and limitations clear?"
 
 ## Common Pitfalls
 
-**Across all difficulty levels:**
 - **Unattempted assignment.** The single most common gap — exercises and answer
   keys are the content most likely to be written from assumption rather than
   verified.
@@ -397,37 +529,33 @@ head and what's on the page.
 - **Cost/hardware requirements omitted** because the author's own machine
   already had a GPU or an API key with credits, so the gap wasn't visible to
   them.
-- **Required section skipped.** Only Sections 8 and 9 are optional; every other
-  heading must be present, and a missing one looks like a mistake.
+- **Required section skipped.** Only Sections 8 and 9 are optional, and Section
+  8 becomes required when the lesson needs an account, API key, paid service,
+  more than a laptop CPU, or an earlier series part. Every other heading must be
+  present, and a missing one looks like a mistake.
+- **Extra markdown in the notebook.** A title cell, an intro, or a recap in the
+  notebook duplicates the `.md` and drifts out of date. The notebook holds code
+  and the explanation after each block — nothing else.
+- **Section 10 out of sync.** An edit to the notebook that never made it into
+  Section 10 (or the reverse). Update both in the same step.
 
-**Specific to difficulty level:**
-
-*Beginner lessons:*
-- **Over-explaining obvious things** — "append adds an item to a list" — wastes
-  space on facts a learner in a programming context already knows. Focus on the
-  domain, not the syntax.
+**Getting the explanation balance wrong:**
+- **Over-explaining obvious syntax** — "append adds an item to a list" — wastes
+  space. Focus on the domain, not the syntax.
 - **Under-explaining domain concepts** — "now we embed the text" without saying
-  what an embedding *is* or why you'd want one. Beginners are new to the topic,
+  what an embedding *is* or why you'd want one. Learners may be new to the topic,
   not necessarily new to programming.
-- **Mixing difficulty levels.** If you label it Beginner but use advanced Python
-  idioms or assume they've done prior lessons, learners will get lost. Stay in one
-  lane.
-
-*Intermediate lessons:*
-- **Too much hand-holding.** Once a learner knows the basics, over-explaining
-  feels condescending and wastes their time. Trust them to connect dots across
-  multiple cells.
-- **Not enough context.** Intermediate lessons should still explain *why* design
-  choices matter — "we use batch_size=50 because the API has limits" is useful
-  context, not fluff.
-
-*Advanced lessons:*
-- **Underestimating the baseline.** If you label it Advanced, don't spend three
-  cells on "here's how to load a CSV" — assume they've built things before.
-- **Too little explanation of tradeoffs.** The whole point of an advanced lesson is
-  understanding the *why*. If you skip that, it's just code, not teaching.
-- **Forgetting the learner is still learning.** "Advanced" doesn't mean "no
-  explanation." It means explaining at a higher level of sophistication.
+- **Unexplained advanced idioms.** Fancy Python patterns, or assuming the learner
+  has done other lessons, loses people. Use an idiom only if it serves the
+  concept, and explain it when you do.
+- **Repeating the same hand-holding.** Once you've explained something, don't
+  re-explain it in every cell — point back to it and move on.
+- **Not enough context on design choices.** "We use batch_size=50 because the API
+  has limits" is useful context, not fluff.
+- **Too little explanation of tradeoffs.** Understanding the *why* is the point.
+  If you skip it, it's just code, not teaching.
+- **Spending cells on trivial setup.** Don't take three cells to load a CSV; keep
+  the focus on the concept the lesson teaches.
 
 ## Using Mermaid Diagrams to Explain Concepts
 
@@ -440,16 +568,16 @@ Section 7 (Underlying Concepts) is your chance to explain the *why* and *how* in
 - Would a learner benefit from seeing how pieces connect visually?
 - Is there a pipeline, workflow, or decision tree involved?
 
-If yes to any of these — and that will be most lessons — use Mermaid. Only skip it when the concept is trivial enough that a one-sentence explanation suffices.
+If yes to any of these — and that will be most lessons — use Mermaid. Outside Section 1, skip it only when the concept is trivial enough that a one-sentence explanation suffices. Section 1 always gets its diagram.
 
-### Example: Vector Embeddings (Beginner Lesson)
+### Example: Vector Embeddings
 
 **Weak explanation (prose only):**
 > Vector embeddings are numerical representations of text. They capture semantic meaning so that similar texts have similar embeddings. An embedding is computed by an embedding model like OpenAI's `text-embedding-3-small`.
 
-**Better explanation (prose + diagram):**
+**Better explanation (simple words + diagram):**
 
-> Vector embeddings are numerical representations of text that capture semantic meaning. Similar texts produce similar embeddings.
+> An embedding turns a piece of text into a list of numbers. Texts that mean similar things get similar numbers.
 
 ```mermaid
 graph LR
@@ -469,11 +597,11 @@ graph LR
     style D fill:#c8e6c9
 ```
 
-> Notice the embeddings are close (small distance = similar meaning), even though the text is phrased differently. This is what makes semantic search possible — finding relevant documents by meaning, not just keywords.
+> See how close the two lists of numbers are? The sentences use different words, but they mean nearly the same thing — so their numbers sit close together. That's what lets us search by meaning instead of exact words.
 
-### Example: RAG Pipeline (Intermediate Lesson)
+### Example: RAG Pipeline
 
-**Problem:** Explaining RAG is multi-step and learners need to understand the flow.
+**Problem:** Retrieval-Augmented Generation (RAG) has several steps, and learners need to see the flow. (In a real lesson, spell out LLM — Large Language Model — and DB — database — before the diagram too.)
 The full pipeline has 8 blocks — over the 7-block limit — so it is split into
 two parts at its natural seam: preparing the documents, then answering a question.
 
@@ -519,9 +647,10 @@ graph LR
 
 **Part 1 (blue):** Prepare your documents once and store them. **Part 2:** When a user asks a question (yellow), retrieve the relevant chunks (orange); the LLM reads them and answers (green).
 
-### Example: Difficulty Progression (Advanced Lesson)
+### Example: Showing Tradeoffs
 
-Show tradeoffs and decision points.
+Show tradeoffs and decision points. Before the diagram, spell out any acronym in
+its labels — here, "BM25 (Best Match 25, a classic keyword-ranking method)".
 
 The full picture (query → tradeoff → 3 options → 3 use cases) has 8 blocks, so
 it is split in two.
@@ -599,12 +728,11 @@ The RAG pipeline and the search-tradeoff examples above are both split this way.
 Before you write any code:
 
 ```
-[ ] Difficulty level chosen (Beginner/Intermediate/Advanced)
-[ ] Scope estimated — near the Article II line reference? (reference, not a hard cap)
+[ ] Scope estimated — near the CQ-1 ~150 raw-code-line reference? (reference, not a hard cap)
 [ ] If too big, split into a series (Lesson 2a, Lesson 2b, etc.)
-[ ] Using the 11-section structure from the constitution
-[ ] Sections 1–9 drafted (explanation of topic through setup)
-[ ] Difficulty header line ready (e.g., "Difficulty: Intermediate | ~40 min")
+[ ] .md file started from the Article I skeleton
+[ ] Sections 1–6 (and 8–9 if needed) drafted; Sections 7 and 11 wait for the code
+[ ] Header line ready (e.g., "~40 min · Needs: basic Python")
 ```
 
 ### Testing Checklist (Five Gates)
@@ -614,8 +742,6 @@ Environment → Gate 5 Reviewer Walkthrough) and the failure modes are above; ru
 them in that document's order and report PASSED/FAILED per gate.
 
 ### Pre-Publish Checklist
-The authoritative pre-publish checklist is **Section 6 (Pre-Publish Checklist) of
-`CONSTITUTION.md`** — walk it item by item before shipping. It covers structure,
-file format, line reference, code explanations, all five gates, file naming,
-difficulty header, compute/cost disclosure, Mermaid diagrams, the `!pip install`
-first cell, and the assignment file.
+The authoritative pre-publish checklist is **Article VI of `CONSTITUTION.md`** —
+walk it item by item before shipping. It covers structure and files, code,
+writing, diagrams, the assignment, and all five gates.

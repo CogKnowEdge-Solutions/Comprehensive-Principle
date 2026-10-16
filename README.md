@@ -1,24 +1,24 @@
 # Comprehensive Principle — Lessons Project Governance
 
-A set of five governance files that define how agents and authors build, test, and publish lessons in this catalog. Drop them into any lesson project to enforce consistent structure, difficulty labeling, code quality, and testing across every lesson.
+A set of five governance files that define how agents and authors build, test, and publish lessons in this catalog. Drop them into any lesson project to enforce consistent structure, code quality, and testing across every lesson.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `files/CONSTITUTION.md` | The source of truth: 11-section lesson structure, code quality rules (CQ-1…CQ-11), difficulty standards, and the pre-publish checklist. Versioned with semantic versioning. |
+| `files/CONSTITUTION.md` | The source of truth (Articles I–VI): lesson files and the `.md` skeleton, the 11-section structure, code quality rules (CQ-1…CQ-11) and standards, writing and UX rules (UX-1…UX-8), diagrams, and the pre-publish checklist. Versioned with semantic versioning. |
 | `files/AGENTS.md` | Operating procedures for an AI agent: how to create, test, review, and edit lessons while staying compliant with the constitution. Defines the five-gate lesson validation workflow. |
-| `files/CLAUDE.md` | Quick start guide for Claude Code users: how to fetch these files, use them in Claude Code workflows, common workflows, and troubleshooting. |
-| `files/GUIDELINES.md` | Practical how-to: writing each section well, Mermaid diagrams, the `!pip install` first cell, the assignment file, common pitfalls, and quick-reference checklists. |
-| `files/TEST.md` | Comprehensive testing guide: general test-case design, the TDD cycle (RED → GREEN → REFACTOR), running tests, and troubleshooting. |
+| `files/CLAUDE.md` | Loaded automatically by Claude Code: points it at `AGENTS.md` and `CONSTITUTION.md`, plus a quick-start guide for people using Claude Code. |
+| `files/GUIDELINES.md` | Practical how-to: writing voice, each section, notebook layout, Mermaid diagrams, the `!pip install` first cell, the assignment skeleton, common pitfalls, and quick-reference checklists. |
+| `files/TEST.md` | The required test-file format: test cases are standalone pytest `.py` files, never notebook cells. |
 
 ## How to Use in a Lesson Project
 
 1. **Fetch the files** into your lesson repo (see fetch commands below).
-2. `CONSTITUTION.md` — treat as the governing document. Every lesson must follow the 11-section structure and clear the pre-publish checklist.
-3. `AGENTS.md` — place at the repo root (or where your agent looks) so AI agents follow the create/test/review workflow automatically.
-4. `GUIDELINES.md` — reference while building: section writing, difficulty signaling, Mermaid diagrams, dependency install cells, and assignment files.
-5. `TEST.md` — consult while testing: test-case design, the TDD cycle, and pytest commands.
+2. `CONSTITUTION.md` — treat as the governing document. Every lesson must follow the Article I structure and clear the Article VI pre-publish checklist.
+3. `AGENTS.md` — place at the repo root (or where your agent looks) so AI agents follow the create/test/review workflow. It also defines the five validation gates, which the checklist depends on.
+4. `GUIDELINES.md` — reference while building: writing voice, section writing, notebook layout, Mermaid diagrams, dependency install cells, and assignment files.
+5. `TEST.md` — follow if the lesson ships test cases: pytest `.py` files only.
 
 ## Fetch Commands
 
@@ -28,40 +28,30 @@ A set of five governance files that define how agents and authors build, test, a
 git clone https://github.com/CogKnowEdge-Solutions/Comprehensive-Principle.git
 ```
 
-### Option B — core files only (manual authorship, no automation)
+### Option B — all files except `CLAUDE.md` (manual authors, or AI agents other than Claude Code)
 
-Use this if you're not using an AI agent and want just the governance framework.
+`AGENTS.md` is included because it defines the five validation gates that the constitution's checklist requires.
 
 ```bash
-curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CONSTITUTION.md -o CONSTITUTION.md \
+curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md -o AGENTS.md \
+  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CONSTITUTION.md -o CONSTITUTION.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/GUIDELINES.md -o GUIDELINES.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/TEST.md -o TEST.md
 ```
 
 ### Option C — all files for Claude Code users
 
-Use this if you're building lessons with Claude Code. Includes `CLAUDE.md` (quick-start guide) and `AGENTS.md` (automation workflows).
+Use this if you're building lessons with Claude Code. Includes `CLAUDE.md`, which Claude Code loads automatically and which pulls in `AGENTS.md` and `CONSTITUTION.md`.
 
 ```bash
-curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md -o AGENTS.md \
-  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CLAUDE.md -o CLAUDE.md \
+curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CLAUDE.md -o CLAUDE.md \
+  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md -o AGENTS.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CONSTITUTION.md -o CONSTITUTION.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/GUIDELINES.md -o GUIDELINES.md \
   && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/TEST.md -o TEST.md
 ```
 
-### Option D — all files for other AI agents (no Claude Code)
-
-Use this if you're using an AI agent other than Claude Code. Includes `AGENTS.md` (automation workflows) but excludes `CLAUDE.md`.
-
-```bash
-curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md -o AGENTS.md \
-  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/CONSTITUTION.md -o CONSTITUTION.md \
-  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/GUIDELINES.md -o GUIDELINES.md \
-  && curl -s https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/TEST.md -o TEST.md
-```
-
-### Option E — pull individual files straight into a lesson
+### Option D — pull individual files straight into a lesson
 
 ```bash
 curl -o AGENTS.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehensive-Principle/main/files/AGENTS.md
@@ -75,13 +65,13 @@ curl -o TEST.md https://raw.githubusercontent.com/CogKnowEdge-Solutions/Comprehe
 
 If you're using Claude Code to build or maintain lessons with this governance:
 
-1. **Fetch `CLAUDE.md`** — it's a quick-start guide tailored for Claude Code workflows, showing how to invoke Claude Code, common workflows (create, test, edit), tips for consistency, and troubleshooting.
-2. **Place all five files at your lesson project root** — Claude Code will automatically read `AGENTS.md` and follow the workflows defined there.
+1. **Fetch all five files (Option C)** — `CLAUDE.md` is what Claude Code loads automatically; it tells Claude Code to follow `AGENTS.md` and `CONSTITUTION.md` and imports both.
+2. **Place all five files at your lesson project root.**
 3. **Invoke Claude Code from your lesson directory:**
    ```bash
    claude
    ```
-   Claude Code will then follow the five-gate testing workflow, reference line ceilings during scoping, enforce section structure, and manage the full lesson lifecycle.
+   Claude Code will then scope against the line reference, enforce the lesson structure, run Gates 1–4, hand Gate 5 to a human reviewer, and manage the full lesson lifecycle.
 
 See `files/CLAUDE.md` for detailed workflows, tips, and guidance specific to Claude Code.
 
@@ -89,8 +79,8 @@ See `files/CLAUDE.md` for detailed workflows, tips, and guidance specific to Cla
 
 A lesson ships as three files with the same slug in one folder:
 
-- `lesson-<topic-slug>.ipynb` (or `.py`) — the runnable code
-- `lesson-<topic-slug>.md` — the 11-section narrative
+- `lesson-<topic-slug>.ipynb` (or `.py`) — the runnable code, each block followed by its explanation, and nothing else
+- `lesson-<topic-slug>.md` — the full lesson: title, header line, and the 11 sections (Section 10 mirrors the code file)
 - `lesson-<topic-slug>-assignment.md` — knowledge-check exercises with an answer key
 
-The notebook starts with a single `!pip install` cell, includes at least one Mermaid diagram for any pipeline/flow concept, and passes all five gates (fresh environment, run-all, output verification, assignment test, reviewer walkthrough) defined in AGENTS.md before publishing.
+The notebook starts with a single `!pip install` cell. The `.md` has a Mermaid diagram in Section 1 and in Section 7 for any pipeline/flow concept. Before publishing, the lesson passes all five gates defined in `AGENTS.md`: fresh environment, run-all, output verification, assignment test, and a human reviewer walkthrough.
