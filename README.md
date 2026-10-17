@@ -80,7 +80,7 @@ See `files/CLAUDE.md` for detailed workflows, tips, and guidance specific to Cla
 A lesson ships as three files with the same slug in one folder:
 
 - `lesson-<topic-slug>.ipynb` (or `.py`) — the runnable code, each block followed by its explanation, and nothing else
-- `lesson-<topic-slug>.md` — the full lesson: title, header line, and the 11 sections (Section 10 mirrors the code file)
+- `lesson-<topic-slug>.md` — the full lesson: the title, then the 11 sections (Section 10 mirrors the code file)
 - `lesson-<topic-slug>-assignment.md` — knowledge-check exercises with an answer key
 
 The notebook starts with a single `!pip install` cell. The `.md` has a Mermaid diagram in Section 1 and in Section 7 for any pipeline/flow concept. Before publishing, the lesson passes all five gates defined in `AGENTS.md`: fresh environment, run-all, output verification, assignment test, and a human reviewer walkthrough.

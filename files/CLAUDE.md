@@ -61,7 +61,7 @@ your-lesson-project/
 ├── GUIDELINES.md                 # Practical how-to guide, with examples
 ├── TEST.md                       # Required format for test files (pytest .py)
 ├── lesson-<slug>.ipynb           # Code + the explanation after each block (or .py)
-├── lesson-<slug>.md              # The full lesson: title, header line, 11 sections
+├── lesson-<slug>.md              # The full lesson: title, then the 11 sections
 └── lesson-<slug>-assignment.md   # Knowledge-check exercises with an answer key
 ```
 
@@ -231,7 +231,7 @@ Check the gate-failure guidance in `AGENTS.md` under "Handling Gate Failures":
 
 ### "My lesson feels lighter or heavier than others"
 
-Read one or two published peer lessons. If your explanation is notably lighter or heavier, bring it in line with the Code Quality Standards in `CONSTITUTION.md`, and make sure the header's time estimate and prerequisites match the actual content.
+Read one or two published peer lessons. If your explanation is notably lighter or heavier, bring it in line with the Code Quality Standards in `CONSTITUTION.md`, and make sure Section 8 (Prerequisites) matches what the lesson actually needs.
 
 ### "I need to bypass a rule"
 

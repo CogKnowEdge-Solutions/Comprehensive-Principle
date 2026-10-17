@@ -203,7 +203,7 @@ Every lesson ships with `lesson-<topic-slug>-assignment.md` — a standalone set
 - Attempt **every exercise yourself** before publishing and verify the answer key (this is Gate 4).
 - Learners can attempt the assignment **without re-running the notebook**; any code-based exercise should run in a scratch file.
 
-## Scoping a Lesson and Signaling Time
+## Scoping a Lesson
 
 Before you write a line of code, get clear on who the lesson is for and what it
 covers. This shapes everything else.
@@ -212,7 +212,7 @@ covers. This shapes everything else.
 - Is this the *first* time a learner will see this concept, or are they building
   on existing knowledge? Either way, explain every term on first use.
 - How much background does a learner need to follow the code? List it in the
-  header line and, if useful, in Section 8 (Prerequisites).
+  Section 8 (Prerequisites).
 - Does the code lean on high-level library calls, custom logic, or design
   decisions? Explain each at the level the Code Quality Standards set.
 - What's the realistic learner goal — understanding, building, or optimizing?
@@ -228,20 +228,17 @@ covers. This shapes everything else.
 - **Helper functions:** Minimize. Write inline unless called multiple times or teaching a separate concept
 - **File format:** `.ipynb` for exploratory lessons; `.py` for production-like code lessons
 
-**Then label it** — the header line goes directly under the title:
-```
-~30 min · Needs: basic Python
-```
-Be honest about the time and what a learner needs to know first. If the lesson
+Don't add a time estimate, difficulty, or "Needs" line under the title — the
+title is followed directly by Section 1 (What is \<Topic\>?). If the lesson
 needs an account, API key, paid service, more than a laptop CPU, or an earlier
-part of its series, Section 8 (Prerequisites) is required too.
+part of its series, Section 8 (Prerequisites) is required.
 
 ## Code Style, With Examples
 
 ### Notebook Layout: Code, Then Its Explanation
 
 The notebook (or `.py` script) holds **only code and the explanation of that
-code**. Everything else — title, header line, Sections 1–9, Section 11 — lives
+code**. Everything else — title, Sections 1–9, Section 11 — lives
 only in the `.md` file.
 
 ```
@@ -734,7 +731,6 @@ Before you write any code:
 [ ] If too big, split into a series (Lesson 2a, Lesson 2b, etc.)
 [ ] .md file started from the Article I skeleton
 [ ] Sections 1–6 (and 8–9 if needed) drafted; Sections 7 and 11 wait for the code
-[ ] Header line ready (e.g., "~40 min · Needs: basic Python")
 ```
 
 ### Testing Checklist (Five Gates)

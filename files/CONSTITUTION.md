@@ -26,7 +26,8 @@
 - `v8.0.0` — difficulty levels (Beginner/Intermediate/Advanced) removed; their code quality and explanation rules merged into one Code Quality Standards section; CQ-1 uses a single ~150-line reference; UX-6 header drops the difficulty label
 - `v8.1.0` — every acronym is spelled out in full the first time it appears in a lesson (UX-2)
 - `v9.0.0` — chapters renamed to Articles I–VI; lesson `.md` skeleton added; the notebook holds only code and the markdown that explains it (everything else lives in the `.md`); explanations come after the code they explain; CQ-1 counts raw code lines only; Section 8 required in defined cases; series exception to the no-cross-reference rule; UX-8 (self-contained lessons) and the real-world example rule added; Section 1 diagram is always required
-- `v10.0.0` — Section 1 renamed from "Explanation of Topic" to a question naming the topic — "What is <Topic>?" — and it explains that topic
+- `v9.1.0` — Section 1 renamed from "Explanation of Topic" to a question naming the topic — "What is <Topic>?" — and it explains that topic
+- `v9.2.0` — the header line under the title (time estimate / difficulty / "Needs") removed; the title is followed directly by Section 1 (What is <Topic>?). UX-6 retired; UX-7 and UX-8 keep their numbers
 
 ---
 
@@ -38,7 +39,7 @@ Every lesson consists of three files with the same slug, in the same folder (UX-
 
 | File | What it holds |
 |------|---------------|
-| `lesson-<topic-slug>.md` | The full lesson narrative: the title, the header line, and all 11 sections below. |
+| `lesson-<topic-slug>.md` | The full lesson narrative: the title and all 11 sections below. |
 | `lesson-<topic-slug>.ipynb` **or** `lesson-<topic-slug>.py` | The runnable code — and only the code plus the explanations of that code (see "What goes in the code file"). |
 | `lesson-<topic-slug>-assignment.md` | Knowledge-check exercises with an answer key (UX-7). |
 
@@ -46,7 +47,7 @@ Use `.ipynb` for exploratory, visual, or step-by-step learning; use `.py` for cl
 
 ### What goes in the code file
 
-The code file contains **only code and the markdown that explains that code**. Everything else — the title, header line, and Sections 1–9 and 11 — lives only in the `.md` file.
+The code file contains **only code and the markdown that explains that code**. Everything else — the title and Sections 1–9 and 11 — lives only in the `.md` file.
 
 - **`.ipynb`:**
   - The first cell is the `!pip install` code cell (CQ-10), followed by one markdown cell explaining it.
@@ -89,8 +90,6 @@ Copy this skeleton exactly. The headings — including their numbers and wording
 ```markdown
 # <Lesson Title>
 
-~<N> min · Needs: <key prerequisites, or "nothing beyond basic Python">
-
 ## 1. What is <Topic>?
 
 ## 2. Problem Statement / Use Case Overview
@@ -116,7 +115,7 @@ Copy this skeleton exactly. The headings — including their numbers and wording
 
 - **Title:** the top-level `#` heading — short, descriptive, and matching the file's slug.
 - **Section 1 heading:** replace `<Topic>` with the lesson's main topic (see above). Every other heading is copied word for word.
-- **Header line:** directly under the title (UX-6).
+- **Nothing between the title and Section 1:** no time estimate, difficulty, or "Needs" line. The title is followed directly by `## 1. What is <Topic>?`, which explains the topic.
 - Delete the Section 8 and 9 headings only when the rules above allow it.
 
 ### Writing Section 1 (What is \<Topic\>?)
@@ -286,8 +285,8 @@ Every lesson meets the same Code Quality Standards (Article II): the same commen
 **UX-5. Consistent framing of What We Learnt (Section 11).**
 "What We Learnt" always ties back explicitly to the concepts named in Section 7, so the loop closes.
 
-**UX-6. Consistent time signaling.**
-Directly under the title, add a header line stating the estimated time and the key prerequisites (e.g., `~40 min · Needs: basic Python`), so learners can self-select before committing time.
+**UX-6. (Retired in v9.2.0.)**
+Lessons no longer carry a time, difficulty, or "Needs" line under the title — the title is followed directly by Section 1. Prerequisites go in Section 8. The number is kept so UX-7 and UX-8 keep theirs.
 
 **UX-7. Every lesson ships with an assignment.**
 Every lesson includes a `lesson-<topic-slug>-assignment.md` file of exercises that let learners test their knowledge after completing the lesson. The assignment is **required**: it is a standalone practice sheet of 5–10 exercises scaled to the lesson's scope, mixing concept questions, short code tasks, and applied tasks. It ends with an answer key (with brief explanations, not just answers) so learners can self-check. Exercises must be doable from the lesson alone and attemptable without re-running the notebook. It follows the assignment skeleton in `GUIDELINES.md`.
@@ -296,7 +295,7 @@ Every lesson includes a `lesson-<topic-slug>-assignment.md` file of exercises th
 The governance files shape how a lesson is built; they are not part of what the learner reads. In all three lesson files:
 - **No governance references.** Never mention `CONSTITUTION.md`, `AGENTS.md`, `GUIDELINES.md`, `TEST.md`, or their Articles and rule IDs (e.g., "per CQ-1", "see Article I"). Referring to the lesson's own sections ("see Section 7") is fine.
 - **No other lessons.** Never refer to or draw on other lessons or their material ("as in Lesson 3", "see the previous lesson").
-  - **Series exception:** a part of a numbered series (`Lesson 2b`) may name the earlier parts of *the same series* as prerequisites — in the header line and in Section 8, nowhere else. It also briefly recaps (in Section 1 or 7) the one or two ideas it needs from them, so a learner can still follow it.
+  - **Series exception:** a part of a numbered series (`Lesson 2b`) may name the earlier parts of *the same series* as prerequisites — in Section 8, nowhere else. It also briefly recaps (in Section 1 or 7) the one or two ideas it needs from them, so a learner can still follow it.
 - **"Lesson", never "lab".** Use the word "lesson" in all learner-facing text (titles, headings, explanations, code comments, printed output, assignment text).
 
 ---
@@ -455,7 +454,7 @@ Every lesson must clear this list. Test-gate items below are executed per the fi
 - [ ] Code file holds only code plus the explanation after each block — no other markdown (Article I)
 - [ ] Section 10 of the `.md` matches the code file (same blocks, same order, same explanations)
 - [ ] File names follow `lesson-<topic-slug>.{ipynb|py}`, `lesson-<topic-slug>.md`, and `lesson-<topic-slug>-assignment.md`
-- [ ] Time estimate header line under the title (UX-6)
+- [ ] Title followed directly by Section 1 (What is \<Topic\>?) — no time, difficulty, or "Needs" line
 
 **Code**
 - [ ] Raw code near the ~150-line reference (comments, docstrings, blank lines, and the `!pip` line not counted) — exceed only where scope genuinely requires it
@@ -492,12 +491,12 @@ This constitution supersedes any ad hoc convention adopted for an individual les
 **Amendment process:** A change to any principle requires (1) a written rationale for the change, (2) review by a second person before it's adopted, and (3) an explicit compatibility note on whether already-published lessons now violate the amended principle and, if so, a remediation plan (re-publish, flag, or grandfather with a stated reason). When an AI agent makes the edit, the user who requested it supplies the rationale and either acts as the reviewer or names one; the agent records both in its report.
 
 **Versioning policy:** This document is versioned independently using semantic versioning (`MAJOR.MINOR.PATCH`):
-- **MAJOR** — a principle is removed or redefined in a way that invalidates previously compliant lessons.
-- **MINOR** — a new principle or materially expanded rule is added.
+- **MAJOR** — an overhaul: the lesson structure or a whole Article is redesigned, so most existing lessons need substantial rework.
+- **MINOR** — a rule or principle is added, changed, or removed, even if existing lessons need small edits (such as renaming a heading) to comply.
 - **PATCH** — wording, clarification, or non-semantic correction.
 
 Each amendment adds a line to the version history at the top and updates the version footer below.
 
 **Compliance review:** The Pre-Publish Checklist (Article VI) is the enforcement point. Any lesson that fails a checklist item is not published until it passes.
 
-**Version**: 10.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-10-17
+**Version**: 9.2.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-10-17

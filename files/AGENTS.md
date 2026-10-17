@@ -242,9 +242,9 @@ skips explanations, the consistency promise breaks. When reviewing or editing
 - **Flag divergence explicitly.** If this lesson's explanation is notably lighter
   or heavier than its peers, call it out in the Pre-Publish Checklist review —
   it's a legitimate gap to fix.
-- **Calibrate the header line** to match the actual content. If the lesson needs
-  more background or time than the header says, the header is wrong, not the
-  lesson — update it.
+- **Keep Section 8 accurate.** If the lesson needs more background, accounts,
+  or hardware than Section 8 says, Section 8 is wrong, not the lesson — update
+  it (or add Section 8 if the lesson now needs it).
 
 ## Citing the Constitution
 
