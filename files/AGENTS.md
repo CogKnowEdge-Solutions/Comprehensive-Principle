@@ -258,7 +258,7 @@ go in your messages and reports only — never in lesson content, per UX-8.)
 
 The rules are in Article V of `CONSTITUTION.md`; the worked examples and
 checklist are in `GUIDELINES.md`. Don't wait for the user to ask. Key points:
-- **Section 1 (Explanation of Topic) always gets one simple diagram** of the
+- **Section 1 (What is \<Topic\>?) always gets one simple diagram** of the
   core idea — no exceptions, even for simple topics.
 - **Section 7:** include a diagram whenever it involves any flow, pipeline,
   architecture, workflow, relationship, or decision tree.

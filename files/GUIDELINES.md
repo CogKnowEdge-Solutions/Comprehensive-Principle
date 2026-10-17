@@ -13,7 +13,7 @@ lesson's `.ipynb` notebook or `.py` script.
 
 1. **Scope it before you write code.** Choose notebook format (`.ipynb` for exploratory/visual, `.py` for production-like code). The line reference is about 150 lines of raw code — comments, docstrings, blank lines, and the `!pip` line don't count. It's a reference for scoping, not a hard cap (CQ-1) — exceed only where scope genuinely requires it. Plan a series split if the content naturally divides, but don't truncate a lesson just to hit the number.
 
-2. **Draft Sections 1–6 (and 8–9 if needed) first,** starting from the `.md` skeleton in Article I: explanation of topic, problem, input/processing/output, tech stack, and any prerequisites and setup. Do this in markdown before coding. Sections 7 and 11 come after the code (step 4).
+2. **Draft Sections 1–6 (and 8–9 if needed) first,** starting from the `.md` skeleton in Article I: What is \<Topic\>?, problem, input/processing/output, tech stack, and any prerequisites and setup. Do this in markdown before coding. Sections 7 and 11 come after the code (step 4).
 
 3. **Build code one step per cell.** Load → transform → embed → store → query. Each code cell is followed by a markdown cell explaining it — and the notebook holds nothing else (see "Notebook Layout" below). Copy each block and its explanation into Section 10 as you go.
 
@@ -82,7 +82,7 @@ first appearance is spelled out in full.
 ## Real-World Examples for Hard Concepts
 
 This is a UX-2 rule. Every complex or hard concept gets a **short, real-world example** — wherever it
-shows up (Explanation of Topic, Underlying Concepts, a complex code step, or
+shows up (What is \<Topic\>?, Underlying Concepts, a complex code step, or
 the assignment). A good example lets the learner picture the idea before they
 read the technical version.
 
@@ -113,7 +113,9 @@ example without looking anything up? If not, swap it for a more universal one.
 
 ## Writing Each Section Well
 
-- **Explanation of Topic:** Explain the topic from the fundamentals, for
+- **What is \<Topic\>? (Section 1):** Name the topic in the heading as a
+  plain question — "What is an AI Agent?", "What are Vector Embeddings?" — and
+  use the section to answer it. Explain the topic from the fundamentals, for
   someone meeting it for the first time — what it is and why it matters —
   before any problem or code. The deeper theory belongs in Underlying Concepts.
   - **Keep the language simple:** short sentences, everyday words, and a
@@ -128,7 +130,7 @@ example without looking anything up? If not, swap it for a more universal one.
   Example (topic: vector embeddings):
 
   ````markdown
-  ## 1. Explanation of Topic
+  ## 1. What are Vector Embeddings?
 
   Computers can't compare meaning directly — they compare numbers. Embeddings
   turn text into numbers so meaning can be compared.

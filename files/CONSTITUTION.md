@@ -26,6 +26,7 @@
 - `v8.0.0` — difficulty levels (Beginner/Intermediate/Advanced) removed; their code quality and explanation rules merged into one Code Quality Standards section; CQ-1 uses a single ~150-line reference; UX-6 header drops the difficulty label
 - `v8.1.0` — every acronym is spelled out in full the first time it appears in a lesson (UX-2)
 - `v9.0.0` — chapters renamed to Articles I–VI; lesson `.md` skeleton added; the notebook holds only code and the markdown that explains it (everything else lives in the `.md`); explanations come after the code they explain; CQ-1 counts raw code lines only; Section 8 required in defined cases; series exception to the no-cross-reference rule; UX-8 (self-contained lessons) and the real-world example rule added; Section 1 diagram is always required
+- `v10.0.0` — Section 1 renamed from "Explanation of Topic" to a question naming the topic — "What is <Topic>?" — and it explains that topic
 
 ---
 
@@ -61,7 +62,7 @@ Every lesson's `.md` file follows this section order, exactly. A learner who's d
 
 | # | Section | What goes here | Length guidance |
 |---|---------|----------------|------------------|
-| 1 | **Explanation of Topic** | A simple, fundamental introduction to the topic — what it is and why it matters — written so a newcomer understands it on first read: plain words, bullet points, at least one everyday example, and a simple diagram | 1–2 framing sentences, then bullets, an example, and one diagram |
+| 1 | **What is \<Topic\>?** | Explains the lesson's topic from the fundamentals — what it is and why it matters — written so a newcomer understands it on first read: plain words, bullet points, at least one everyday example, and a simple diagram | 1–2 framing sentences, then bullets, an example, and one diagram |
 | 2 | **Problem Statement / Use Case Overview** | What real problem this lesson solves, in plain terms | 3–6 sentences |
 | 3 | **Input** | What data goes in, format, source (sample/synthetic/real), size | Short paragraph or bullets |
 | 4 | **Processing** | What happens to the data — the pipeline/steps at a conceptual level | Short paragraph or bullets |
@@ -72,6 +73,8 @@ Every lesson's `.md` file follows this section order, exactly. A learner who's d
 | 9 | **Environment / Dependencies Setup** *(Optional — see below)* | Exact steps to get a clean environment running | Copy-pasteable commands |
 | 10 | **Step-wise Development Instructions** | The actual build: the code blocks from the code file, each followed by its explanation (see Article II) | Bulk of the lesson |
 | 11 | **What We Learnt** | Recap of concepts and skills, tying back to Section 7 | 4–8 bullets |
+
+**Section 1's heading names the topic.** Write it as a plain question with the lesson's main topic filled in: "What is an AI Agent?", "What are Vector Embeddings?" (use "are" for a plural topic). Spell out an acronym in the heading itself — "What is Retrieval-Augmented Generation (RAG)?" (UX-2). The section then answers that question.
 
 **Required and optional sections:**
 - Sections 1–7, 10, and 11 are required in every lesson.
@@ -88,7 +91,7 @@ Copy this skeleton exactly. The headings — including their numbers and wording
 
 ~<N> min · Needs: <key prerequisites, or "nothing beyond basic Python">
 
-## 1. Explanation of Topic
+## 1. What is <Topic>?
 
 ## 2. Problem Statement / Use Case Overview
 
@@ -112,12 +115,13 @@ Copy this skeleton exactly. The headings — including their numbers and wording
 ```
 
 - **Title:** the top-level `#` heading — short, descriptive, and matching the file's slug.
+- **Section 1 heading:** replace `<Topic>` with the lesson's main topic (see above). Every other heading is copied word for word.
 - **Header line:** directly under the title (UX-6).
 - Delete the Section 8 and 9 headings only when the rules above allow it.
 
-### Writing Section 1
+### Writing Section 1 (What is \<Topic\>?)
 
-**Section 1 is written for easy understanding.** Start from fundamentals and assume no prior knowledge of the topic:
+**Section 1 explains the topic named in its heading, written for easy understanding.** It answers the heading's question — what the topic is and why it matters — starting from fundamentals and assuming no prior knowledge:
 - **Simple language** — short sentences, everyday words; define any unavoidable term in one line.
 - **Bullet points** — break the explanation into short points (one idea each) instead of dense paragraphs.
 - **At least one example** — a short, real-world, universal example that makes the idea tangible (UX-2; e.g., "an embedding is like GPS coordinates for meaning").
@@ -261,7 +265,7 @@ This one uses a helper function because the two-stage search is the concept bein
 ## Article III — User Experience Consistency
 
 **UX-1. Structural consistency is non-negotiable.**
-Every lesson uses the exact `.md` skeleton and 11-section order from Article I, with the same headings (optional Sections 8 and 9 omitted only where Article I allows). Consistency here is what lets a learner navigate lesson 12 as confidently as lesson 1.
+Every lesson uses the exact `.md` skeleton and 11-section order from Article I, with the same headings — only Section 1's heading changes, to name the lesson's topic (optional Sections 8 and 9 omitted only where Article I allows). Consistency here is what lets a learner navigate lesson 12 as confidently as lesson 1.
 
 **UX-2. Consistent voice: active, personal, simple, and human.**
 All learner-facing text (the `.md` file, the explanations in the code file, code comments, and the assignment) reads like a friendly teacher talking to the learner:
@@ -496,4 +500,4 @@ Each amendment adds a line to the version history at the top and updates the ver
 
 **Compliance review:** The Pre-Publish Checklist (Article VI) is the enforcement point. Any lesson that fails a checklist item is not published until it passes.
 
-**Version**: 9.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-10-16
+**Version**: 10.0.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-10-17
