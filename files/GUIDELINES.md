@@ -247,7 +247,7 @@ only in the `.md` file.
 [code]      Step 1 — e.g., load the data
 [markdown]  What step 1 did and why
 [code]      Step 2 — e.g., split into chunks (a complex step)
-[markdown]  Explainer: Input / What happens / Output / Why + small diagram
+[markdown]  Explainer: How it works / Why + small diagram
 ...
 ```
 
@@ -325,10 +325,14 @@ needs a dedicated explainer, and a diagram if required.
 - Several components interact (model, database, API).
 
 **Explainer format** — bullet points in the markdown cell right after the code:
-- **Input:** what goes in, with its shape or type.
-- **What happens:** the operations in order, in plain words.
-- **Output:** what comes out, with its shape or type.
+- **How it works:** what the code does, one bullet per operation, in order and
+  in plain words.
 - **Why:** why the build needs this step here.
+
+**Don't add Input, Processing, or Output parts** to any code explanation. The
+lesson already has those as Sections 3, 4, and 5, so repeating them per code
+block just duplicates the lesson. Expected output is described only in
+Section 5.
 
 **Add a diagram if** the step has a flow, a branch, or data changing shape.
 Keep it to 7 blocks or fewer and about this step only.
@@ -354,14 +358,12 @@ top_chunks = [chunks[i] for i in np.argsort(scores)[::-1][:3]]
 Then the markdown cell right after it:
 
 ````markdown
-- **Input:** your question (a string) and the stored chunk vectors (one list of
-  numbers per chunk).
-- **What happens:**
-  - We turn the question into a vector with the same embedding model.
+- **How it works:**
+  - We turn the question into a vector with the same embedding model we used
+    for the chunks, so the two can be compared.
   - We compare that vector with every chunk vector using cosine similarity — a
     score from -1 to 1 for how closely two vectors point the same way.
   - We sort the chunks by score and keep the top 3.
-- **Output:** you get a list of 3 chunks, most relevant first.
 - **Why:** the language model can only read a few chunks, so we hand it the
   ones most likely to contain the answer.
 

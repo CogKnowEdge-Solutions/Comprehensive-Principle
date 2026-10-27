@@ -28,6 +28,7 @@
 - `v9.0.0` — chapters renamed to Articles I–VI; lesson `.md` skeleton added; the notebook holds only code and the markdown that explains it (everything else lives in the `.md`); explanations come after the code they explain; CQ-1 counts raw code lines only; Section 8 required in defined cases; series exception to the no-cross-reference rule; UX-8 (self-contained lessons) and the real-world example rule added; Section 1 diagram is always required
 - `v9.1.0` — Section 1 renamed from "Explanation of Topic" to a question naming the topic — "What is <Topic>?" — and it explains that topic
 - `v9.2.0` — the header line under the title (time estimate / difficulty / "Needs") removed; the title is followed directly by Section 1 (What is <Topic>?). UX-6 retired; UX-7 and UX-8 keep their numbers
+- `v9.3.0` — code explanations no longer repeat the lesson-level Input / Processing / Output parts (Sections 3–5): the CQ-11 explainer drops its Input / What happens / Output labels, and no code explanation describes expected output (CQ-2)
 
 ---
 
@@ -141,6 +142,7 @@ This is a teaching constraint, not a style preference — beyond the reference c
 **CQ-2. Every code block is explained, not just labeled.**
 - **After the code:** every code block is followed by an explanation of *what it does and why it's there* — a markdown cell right after the code cell in a notebook, a comment block right after the block in a `.py` file, and the same text right after the block in Section 10 of the `.md`. Explanations always come after the code, never before.
 - **Inside the code:** every logical block (a group of lines doing one job) starts with a comment explaining it in easy, everyday words.
+- **No Input / Processing / Output parts.** Those are the lesson's Sections 3, 4, and 5, and they are not repeated for each code block. A code explanation says what the code does and why — it doesn't restate the lesson's input data, re-describe the overall pipeline, or describe what the code prints (expected output lives only in Section 5).
 - The Code Quality Standards below set the depth. Assume the learner may not know the library, not just the concept.
 
 **CQ-3. One logical step per cell.**
@@ -169,10 +171,10 @@ The first code cell installs every module the lesson needs in a single line — 
 
 **CQ-11. Every complex step gets an explainer and a diagram where required.**
 A step is complex when a learner can't follow it from a one-line description: several operations chained together, a non-obvious algorithm or formula, a loop or branch with more than one path, data changing shape (e.g., text → chunks → vectors), or several components talking to each other. Every such step gets a dedicated explainer **right after the code**, written as bullet points:
-- **Input** — what goes into the step (with its shape or type).
-- **What happens** — the operations in order, in plain words.
-- **Output** — what comes out (with its shape or type).
+- **How it works** — walk through what the code does, one bullet per operation, in order and in plain words.
 - **Why** — why this step is needed at this point in the build.
+
+The explainer does **not** have Input, Processing, or Output parts (CQ-2) — those belong to Sections 3–5.
 
 If the step involves a flow, branching, data changing shape, or components interacting, add a small Mermaid diagram (Article V) inside the same explainer. Keep it focused on that one step — the whole-pipeline diagram belongs in Section 7. If the step uses a hard concept, include a short real-world example (UX-2). Simple steps (a single import, reading a file, printing a value) need only CQ-2's short explanation.
 
@@ -459,7 +461,7 @@ Every lesson must clear this list. Test-gate items below are executed per the fi
 **Code**
 - [ ] Raw code near the ~150-line reference (comments, docstrings, blank lines, and the `!pip` line not counted) — exceed only where scope genuinely requires it
 - [ ] Every code block followed by its explanation; every logical block starts with a plain-language comment (CQ-2)
-- [ ] Every complex step has an explainer after the code (input, what happens, output, why), plus a diagram where required (CQ-11)
+- [ ] Every complex step has an explainer after the code (how it works, why — no Input/Processing/Output parts), plus a diagram where required (CQ-11)
 - [ ] Helper functions minimized — inline code preferred (CQ-9)
 - [ ] First code cell runs `!pip install` for all required modules (`.ipynb`), or Section 9 installs from `requirements.txt` (`.py`)
 
@@ -499,4 +501,4 @@ Each amendment adds a line to the version history at the top and updates the ver
 
 **Compliance review:** The Pre-Publish Checklist (Article VI) is the enforcement point. Any lesson that fails a checklist item is not published until it passes.
 
-**Version**: 9.2.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-10-17
+**Version**: 9.3.0 | **Ratified**: 2026-08-05 | **Last Amended**: 2026-10-27

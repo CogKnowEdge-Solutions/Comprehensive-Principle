@@ -72,9 +72,11 @@ content follows UX-2 in `CONSTITUTION.md`).
      in the `.md` file.
    - **One logical step per cell (CQ-3)**, with a plain-language comment at the
      start of every logical block of code (CQ-2).
-   - **Every complex step** gets a dedicated explainer after the code (input,
-     what happens, output, why) in bullet points, plus a small Mermaid diagram
-     when the step involves a flow, branching, or data changing shape (CQ-11).
+   - **Every complex step** gets a dedicated explainer after the code (how it
+     works, why) in bullet points, plus a small Mermaid diagram when the step
+     involves a flow, branching, or data changing shape (CQ-11).
+   - **No Input / Processing / Output parts** in any code explanation, and no
+     description of what the code prints — those are Sections 3–5 (CQ-2).
    - **Minimize helper functions** — prefer inline code unless the function is
      called multiple times or teaches a separate concept (CQ-9).
    - **First cell (`.ipynb`):** a single `!pip install <module> <module> ...`
